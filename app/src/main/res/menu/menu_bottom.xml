@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        app:cnb_backgroundColor="#ADFDE6"
+        app:cnb_iconColor="#178767"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#178767" />
+
+    <item
+        android:id="@+id/favourites"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Favourites"
+        app:cnb_backgroundColor="#ADFDE6"
+        app:cnb_iconColor="#178767"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#178767" />
+
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_personnew_24"
+        android:title="Profile"
+        app:cnb_backgroundColor="#ADFDE6"
+        app:cnb_iconColor="#178767"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#178767" />
+
+</menu>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#199F79"
+    android:background="#199f79"
+    tools:context=".CollectionActivities.SignUpActivity">
+
+
+        <View
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/registerview"
+            android:layout_alignParentRight="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layouttxtImage"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Here's your \nfirst step \nwith us !"
+                    android:textSize="30dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/signika_semibold"
+                    android:textColor="@color/white"/>
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/userprofile"
+                    app:civ_border_color="@color/white"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/cardregisterdetails"
+                android:layout_below="@id/layouttxtImage"
+                android:layout_centerInParent="true">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:orientation="vertical">
+
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content">
+
+                           <EditText
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_margin="6dp"
+                               android:padding="8dp"
+                               android:ems="13"
+                               android:imeOptions="actionNext"
+                               android:drawableLeft="@drawable/ic_baseline_person_24"
+                               android:drawablePadding="5dp"
+                               android:inputType="textPersonName|textNoSuggestions"
+                               android:hint="Full Name"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="13"
+                                android:imeOptions="actionNext"
+                                android:inputType="phone|textNoSuggestions"
+                                android:drawableLeft="@drawable/ic_baseline_phone_24"
+                                android:drawablePadding="5dp"
+                                android:layout_margin="6dp"
+                                android:padding="8dp"
+                                android:hint="Contact Number"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textPostalAddress|textNoSuggestions"
+                                android:layout_margin="6dp"
+                                android:imeOptions="actionNext"
+                                android:padding="8dp"
+                                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                                android:drawablePadding="5dp"
+                                android:ems="13"
+                                android:hint="Complete Address"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textEmailAddress|textNoSuggestions"
+                                android:layout_margin="6dp"
+                                android:padding="8dp"
+                                android:imeOptions="actionNext"
+                                android:ems="13"
+                                android:drawableLeft="@drawable/ic_baseline_email_24"
+                                android:drawablePadding="5dp"
+                                android:hint="Email Id"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textPassword|textNoSuggestions"
+                                android:layout_margin="6dp"
+                                android:padding="8dp"
+                                android:imeOptions="actionDone"
+                                android:ems="13"
+                                android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
+                                android:drawablePadding="5dp"
+                                android:hint="Password"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="19dp"
+                            android:layout_marginRight="18dp"
+                            android:textSize="20dp"
+                            android:id="@+id/registerButton"
+                            android:background="@drawable/loginbuttonbackgroung"
+                            android:textColor="@color/white"
+                            android:layout_below="@id/cardregisterdetails"
+                            android:fontFamily="@font/signika_semibold"
+                            android:text="Register" />
+
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:layout_width="150dp"
+                            android:layout_gravity="center_horizontal"
+                            app:indicatorDirectionLinear="leftToRight"
+                            android:visibility="invisible"
+                            android:layout_marginTop="10dp"
+                            android:soundEffectsEnabled="true"
+                            app:indicatorColor="#EF0F29"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Already have an account ? Log In"
+                            android:textAlignment="center"
+                            android:textSize="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="#199F79"
+                            android:fontFamily="@font/signika_semibold"
+                            android:gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Or Sign Up With"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="9dp"
+                            android:fontFamily="@font/signika_semibold"
+                            android:textSize="18sp"/>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/googlesignup"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20dp"/>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardregisterdetails"
+                android:src="@drawable/back"/>
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
