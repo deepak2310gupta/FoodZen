@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".CollectionActivities.SignUpSellerActivity"></activity>
+        <activity android:name=".CollectionActivities.RestaurantShowItemsActivity"></activity>
+        <activity android:name=".CollectionActivities.DashboardSellerActivity" />
+        <activity android:name=".CollectionActivities.SignUpSellerActivity" />
         <activity
             android:name=".WalkthroughLayout.OnBoardActivity"
             android:exported="true" />

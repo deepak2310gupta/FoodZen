@@ -32,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button registerButton;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
-    TextView alreadyHaveAccount;
+    TextView alreadyHaveAccount,txtForSellerRegisteration;
     EditText registerPasswordEt,registerNameEt,registerMobileEt,registerAddressEt,registerEmailEt;
     Pattern pattern;
     LinearProgressIndicator registerProgressLinearIndicator;
@@ -66,6 +66,14 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        txtForSellerRegisteration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SignUpActivity.this,SignUpSellerActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initViews() {
@@ -78,6 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
         registerAddressEt=findViewById(R.id.registerAddressEt);
         registerEmailEt=findViewById(R.id.registerEmailEt);
         registerProgressLinearIndicator=findViewById(R.id.registerProgressLinearIndicator);
+        txtForSellerRegisteration=findViewById(R.id.txtForSellerRegisteration);
 
     }
 
