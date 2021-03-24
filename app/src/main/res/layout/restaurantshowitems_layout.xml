@@ -56,17 +56,17 @@
                     android:id="@+id/itemTypeImageIcon"/>
 
                 <TextView
+                    android:id="@+id/FoodItemName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tandoori Chaap"
                     android:layout_below="@id/itemTypeImageIcon"
-                    android:fontFamily="@font/signika_semibold"
-                    android:textSize="18dp"
-                    android:textColor="@color/black"
-                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="3dp"
-                    android:id="@+id/FoodItemName"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/gudea"
+                    android:text="Tandoori Chaap"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -77,7 +77,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:fontFamily="@font/rajdhani_medium"
+                    android:fontFamily="@font/gudea"
                     android:text="Rs 100"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
@@ -91,19 +91,20 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:layout_toEndOf="@id/FoodItemOriginalPrice"
-                    android:fontFamily="@font/rajdhani_medium"
+                    android:fontFamily="@font/gudea"
                     android:text="Rs 50"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
                 <TextView
+                    android:id="@+id/FoodItemDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/FoodItemOriginalPrice"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginRight="50dp"
-                    android:fontFamily="@font/rajdhani_medium"
+                    android:fontFamily="@font/gudea"
                     android:maxLines="2"
                     android:text="Description In Maximum 2 Lines Description In Maximum 2 Lines"
                     android:textColor="@color/black"
@@ -113,15 +114,16 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/addProductLayout"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:layout_marginBottom="5dp"
                 android:layout_below="@id/FoodImageRestaurantLayout"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="-30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/addlayoutbackground"
+                android:padding="2dp"
                 tools:ignore="NotSibling">
 
                 <TextView
@@ -137,8 +139,15 @@
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_baseline_add_24" />
             </RelativeLayout>
 
         </RelativeLayout>

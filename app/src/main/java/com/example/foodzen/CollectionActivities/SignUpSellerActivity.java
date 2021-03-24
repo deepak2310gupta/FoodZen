@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodzen.CollectionModels.ModelSeller;
 import com.example.foodzen.CollectionModels.ModelUsers;
 import com.example.foodzen.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -86,13 +87,14 @@ public class SignUpSellerActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        ModelUsers modelUsers = new ModelUsers(
+                        ModelSeller modelUsers = new ModelSeller(
                                 "" + txtShopName,
                                 "" + txtShopCategory,
                                 "" + txtShopAdress,
                                 "" + txtEmailIdShop,
                                 "" + firebaseAuthNew.getCurrentUser().getUid(),
-                                "" + "RestaurantSeller"
+                                "" + "RestaurantSeller",
+                                ""+txtDiscoutNote
                         );
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
                         databaseReference.child(firebaseAuthNew.getCurrentUser().getUid()).setValue(modelUsers);

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".CollectionActivities.RestaurantShowItemsActivity">
 
@@ -12,8 +12,34 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/restaurantshowitems_layout"
         android:id="@+id/RestaurantShowItemsRecyclerView"
+        tools:listitem="@layout/restaurantshowitems_layout"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E9F2FB"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_margin="3dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/fssailogopic"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_margin="3dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:text="License Number:123"/>
+    </LinearLayout>
+
+
 
 </LinearLayout>

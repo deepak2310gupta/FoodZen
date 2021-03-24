@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.foodzen.CollectionFragments.AddProductFragment;
 import com.example.foodzen.CollectionFragments.FavouritesFragment;
 import com.example.foodzen.CollectionFragments.HomeFragment;
+import com.example.foodzen.CollectionFragments.HomeSellerFragment;
 import com.example.foodzen.CollectionFragments.ProfileFragment;
 import com.example.foodzen.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -32,9 +33,9 @@ public class DashboardSellerActivity extends AppCompatActivity {
             public void onItemSelected(int i) {
                 switch (i){
                     case R.id.homeSeller:
-                        HomeFragment homeFragment = new HomeFragment();
+                        HomeSellerFragment homeSellerFragment = new HomeSellerFragment();
                         FragmentTransaction fragmentTransactionAgain1 = getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeFragment,"").commit();
+                        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeSellerFragment,"").commit();
                         break;
                     case R.id.AddproductSeller:
                         AddProductFragment addProductFragment = new AddProductFragment();
