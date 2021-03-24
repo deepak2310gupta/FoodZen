@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".WalkthroughLayout.OnBoardActivity"
-            android:exported="true"></activity>
+        <activity android:name=".CollectionActivities.SignUpSellerActivity"></activity>
+        <activity
+            android:name=".WalkthroughLayout.OnBoardActivity"
+            android:exported="true" />
         <activity android:name=".CollectionActivities.DashboardActivity" />
         <activity android:name=".CollectionActivities.SignUpActivity" />
         <activity android:name=".CollectionActivities.SignInActivity" />

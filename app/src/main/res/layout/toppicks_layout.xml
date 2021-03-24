@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/imageHelperLayout"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:id="@+id/topPicksImage"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pizza"/>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:id="@+id/backgrounddiscount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-13dp"
+            android:layout_below="@id/imageHelperLayout"
+            android:background="@drawable/discountbackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10% OFF"
+                android:id="@+id/topPicksDiscoutnView"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/backgrounddiscount"
+        android:layout_margin="3dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baba Pizza Cafe"
+            android:maxLines="2"
+            android:id="@+id/topPicksRestaurantName"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/signika_semibold"
+            android:textSize="15dp"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>

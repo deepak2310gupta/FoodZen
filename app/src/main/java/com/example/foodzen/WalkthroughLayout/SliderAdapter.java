@@ -36,9 +36,9 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String[] detail = {
-            "Eat Organic , Stay Healthy",
+            "Ordered from a Wide Range of Restaurant",
             "Special treat for your vehicle",
-            "Imagine the secure future"
+            "Delivered Quickly to your Doorstep"
     };
 
     @Override

@@ -47,18 +47,20 @@
                 android:hint="Email Id"
                 android:padding="8dp"
                 android:stateListAnimator="@null"
+                android:id="@+id/loginEmailEt"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
-                android:layout_margin="9dp"
+                android:layout_margin="12dp"
                 android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"/>
             <EditText
                 android:layout_width="match_parent"
                 android:hint="Password"
                 android:padding="8dp"
+                android:id="@+id/loginPasswordEt"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
-                android:layout_margin="9dp"
+                android:layout_margin="12dp"
                 android:stateListAnimator="@null"
                 android:inputType="textPassword"
                 android:layout_height="wrap_content"/>
@@ -82,6 +84,7 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/loginbuttonbackgroung"
                 android:textColor="@color/white"
+                android:id="@+id/logiUserButton"
                 android:textSize="20dp"
                 android:fontFamily="@font/signika_semibold"
                 android:text="Login"/>
@@ -92,6 +95,7 @@
                 app:indicatorDirectionLinear="leftToRight"
                 android:visibility="invisible"
                 android:soundEffectsEnabled="true"
+                android:id="@+id/linearIndicatorProg"
                 app:indicatorColor="#EF0F29"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -100,6 +104,7 @@
                 android:text="Dont Have An Account Yet ? Register Now"
                 android:textAlignment="center"
                 android:textSize="18dp"
+                android:id="@+id/DontHaveAnAccountYet"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
