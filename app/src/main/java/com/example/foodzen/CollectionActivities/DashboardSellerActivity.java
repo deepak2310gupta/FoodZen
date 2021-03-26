@@ -24,9 +24,9 @@ public class DashboardSellerActivity extends AppCompatActivity {
 
         menuChipNavigationBar=findViewById(R.id.menuChipNavigationBarForSeller);
 
-        HomeFragment homeFragment = new HomeFragment();
+        HomeSellerFragment homeSellerFragment = new HomeSellerFragment();
         FragmentTransaction fragmentTransactionAgain1 = getSupportFragmentManager().beginTransaction();
-        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeFragment,"").commit();
+        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeSellerFragment,"").commit();
 
         menuChipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override

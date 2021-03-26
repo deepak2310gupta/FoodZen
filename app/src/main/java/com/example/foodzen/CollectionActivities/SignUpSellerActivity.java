@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class SignUpSellerActivity extends AppCompatActivity {
@@ -87,20 +88,21 @@ public class SignUpSellerActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        ModelSeller modelUsers = new ModelSeller(
-                                "" + txtShopName,
-                                "" + txtShopCategory,
-                                "" + txtShopAdress,
-                                "" + txtEmailIdShop,
-                                "" + firebaseAuthNew.getCurrentUser().getUid(),
-                                "" + "RestaurantSeller",
-                                ""+txtDiscoutNote
-                        );
+
+                        HashMap<String,Object>hashMapSeller=new HashMap<>();
+                        hashMapSeller.put("name","" + txtShopName);
+                        hashMapSeller.put("category","" + txtShopCategory);
+                        hashMapSeller.put("address", "" + txtShopAdress);
+                        hashMapSeller.put("email","" + txtEmailIdShop);
+                        hashMapSeller.put("uid","" + firebaseAuthNew.getCurrentUser().getUid());
+                        hashMapSeller.put("usertype","RestaurantSeller");
+                        hashMapSeller.put("discountnote",""+txtDiscoutNote);
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-                        databaseReference.child(firebaseAuthNew.getCurrentUser().getUid()).setValue(modelUsers);
+                        databaseReference.child(firebaseAuthNew.getCurrentUser().getUid()).setValue(hashMapSeller);
                         Toast.makeText(SignUpSellerActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpSellerActivity.this, DashboardSellerActivity.class);
                         startActivity(intent);
+                        finish();
                         return;
                     }
                 }

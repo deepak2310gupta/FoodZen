@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -51,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
       
@@ -71,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(SignUpActivity.this,SignUpSellerActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -117,19 +120,19 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                ModelUsers modelUsers = new ModelUsers(
-                                        "" + txtname,
-                                        "" + txtphone,
-                                        "" + txtaddress,
-                                        "" + txtemail,
-                                        "" + firebaseAuth.getCurrentUser().getUid(),
-                                        "" + "User"
-                                );
+                                HashMap<String,Object> hashMap=new HashMap<>();
+                                hashMap.put("name","" + txtname);
+                                hashMap.put("phone","" + txtphone);
+                                hashMap.put("address", "" + txtaddress);
+                                hashMap.put("email","" + txtemail);
+                                hashMap.put("uid","" + firebaseAuth.getCurrentUser().getUid());
+                                hashMap.put("usertype","User");
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-                                databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(modelUsers);
+                                databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(hashMap);
                                 Toast.makeText(SignUpActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUpActivity.this, DashboardActivity.class);
                                 startActivity(intent);
+                                finish();
                                 return;
                             }
                         }

@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.foodzen.CollectionFragments.CartFragment;
 import com.example.foodzen.CollectionFragments.FavouritesFragment;
 import com.example.foodzen.CollectionFragments.HomeFragment;
 import com.example.foodzen.CollectionFragments.ProfileFragment;
@@ -40,10 +41,10 @@ public class DashboardActivity extends AppCompatActivity {
                         FragmentTransaction fragmentTransactionAgain2 = getSupportFragmentManager().beginTransaction();
                         fragmentTransactionAgain2.replace(R.id.collectionfragmentsReplacer, favouritesFragment,"").commit();
                         break;
-                    case R.id.profile:
-                        ProfileFragment profileFragment = new ProfileFragment();
+                    case R.id.userCart:
+                        CartFragment cartFragment = new CartFragment();
                         FragmentTransaction fragmentTransactionAgain3 = getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionAgain3.replace(R.id.collectionfragmentsReplacer, profileFragment,"").commit();
+                        fragmentTransactionAgain3.replace(R.id.collectionfragmentsReplacer, cartFragment,"").commit();
                         break;
                 }
             }

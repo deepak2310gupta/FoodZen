@@ -11,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodzen.CollectionModels.ModelAddProducts;
 import com.example.foodzen.CollectionModels.ModelFoodItem;
 import com.example.foodzen.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -20,11 +22,11 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
 
 
     Context context;
-    ArrayList<ModelFoodItem>modelFoodItemArrayList;
+    ArrayList<ModelAddProducts>modelAddProductsArrayList;
 
-    public AdapterRestaurantItems(Context context, ArrayList<ModelFoodItem> modelFoodItems) {
+    public AdapterRestaurantItems(Context context, ArrayList<ModelAddProducts> modelAddProductsArrayList) {
         this.context = context;
-        this.modelFoodItemArrayList = modelFoodItems;
+        this.modelAddProductsArrayList = modelAddProductsArrayList;
     }
 
     @NonNull
@@ -37,19 +39,26 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
     @Override
     public void onBindViewHolder(@NonNull ShopItemsHolder holder, int position) {
 
-        ModelFoodItem modelFoodItem=modelFoodItemArrayList.get(position);
-        String txtFoodName=modelFoodItem.getFoodName();
-        String txtFoodDesc=modelFoodItem.getFoodDesc();
-        String txtFoodOriPrice=modelFoodItem.getFoodOriginalPrice();
-        String txtFoodDiscPrice=modelFoodItem.getFoodDiscountedPrice();
-        String txtFoodImg=modelFoodItem.getFoodImage();
-        String txtFoodType=modelFoodItem.getFoodType();
+        ModelAddProducts modelAddProducts=modelAddProductsArrayList.get(position);
+        String txtFoodName=modelAddProducts.getpName();
+        String txtFoodDesc=modelAddProducts.getpDesc();
+        String txtFoodOriPrice=modelAddProducts.getOriPrice();
+        String txtFoodDiscPrice=modelAddProducts.getDiscountPrice();
+        //String txtFoodImg=modelAddProducts.get();
+        //String txtFoodType=modelAddProducts.getFoodType();
+
+        holder.FoodItemName.setText(txtFoodName);
+        holder.FoodItemDescription.setText(txtFoodDesc);
+        holder.FoodItemOriginalPrice.setText(txtFoodOriPrice);
+        holder.FoodItemDiscountedPrice.setText(txtFoodDiscPrice);
+
+
 
     }
 
     @Override
     public int getItemCount() {
-        return modelFoodItemArrayList.size();
+        return modelAddProductsArrayList.size();
     }
 
     public class ShopItemsHolder extends RecyclerView.ViewHolder {
@@ -60,10 +69,10 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
             super(itemView);
             itemTypeImageIcon=itemView.findViewById(R.id.itemTypeImageIcon);
             FoodImage=itemView.findViewById(R.id.FoodImage);
-            FoodItemName=itemView.findViewById(R.id.FoodItemName);
-            FoodItemOriginalPrice=itemView.findViewById(R.id.FoodItemOriginalPrice);
-            FoodItemDescription=itemView.findViewById(R.id.FoodItemDescription);
-            FoodItemDiscountedPrice=itemView.findViewById(R.id.FoodItemDiscountedPrice);
+            FoodItemName=itemView.findViewById(R.id.FoodItemNameNew);
+            FoodItemOriginalPrice=itemView.findViewById(R.id.FoodItemOriginalPriceNew);
+            FoodItemDescription=itemView.findViewById(R.id.FoodItemDescriptionNew);
+            FoodItemDiscountedPrice=itemView.findViewById(R.id.FoodItemDiscountedPriceNew);
             addProductLayout=itemView.findViewById(R.id.addProductLayout);
 
         }

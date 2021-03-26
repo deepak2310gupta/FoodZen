@@ -45,6 +45,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(SignInActivity.this,SignUpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         logiUserButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,7 @@ public class SignInActivity extends AppCompatActivity {
                 Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
                 startActivity(intent);
+                finish();
                 return;
             }
         }).addOnFailureListener(new OnFailureListener() {

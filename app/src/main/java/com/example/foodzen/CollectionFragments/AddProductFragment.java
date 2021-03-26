@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 
 public class AddProductFragment extends Fragment {
 
@@ -77,18 +79,18 @@ public class AddProductFragment extends Fragment {
         }
 
         else {
-            ModelAddProducts modelAddProducts = new ModelAddProducts(
-                    "" + timeValueStamp,
-                    "" + txtproductName,
-                    "" + txtproductDesc,
-                    "" + txtOriginalPrice,
-                    "" + txtItemType,
-                    "" + txtDiscountPrice,
-                    "" + txtDiscountNote,
-                    ""+user.getUid()
-            );
+
+            HashMap<String,Object>hashMap=new HashMap<>();
+            hashMap.put("pId","" + timeValueStamp);
+            hashMap.put("pName","" + txtproductName);
+            hashMap.put("pDesc","" + txtproductDesc);
+            hashMap.put("oriPrice","" + txtOriginalPrice);
+            hashMap.put("itemType","" + txtItemType);
+            hashMap.put("discountPrice","" + txtDiscountPrice);
+            hashMap.put("discontNote","" + txtDiscountNote);
+            hashMap.put("productUserId",""+user.getUid());
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalProductsSeller");
-            databaseReference.child(timeValueStamp).setValue(modelAddProducts);
+            databaseReference.child(timeValueStamp).setValue(hashMap);
             addProductLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();
             EmptyAllEditTexts();

@@ -72,12 +72,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_below="@id/anothertext"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:id="@+id/RestaurantsRecylerView"
-        tools:listitem="@layout/restaurants_nearulayout"/>
+        android:id="@+id/RestaurantsRecylerView" />
 
 
 

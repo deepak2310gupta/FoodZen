@@ -2,81 +2,83 @@ package com.example.foodzen.CollectionModels;
 
 public class ModelFoodItem {
 
-    private String foodId,foodName,foodDesc,foodOriginalPrice,foodImage,foodDiscountedPrice,foodType,foodUserid;
+    private String foodid,foodname,fooddesc,foodoriginalprice,foodimage,fooddiscountedprice,foodtype,fooduserid;
 
-
-    public ModelFoodItem(String foodId, String foodName, String foodDesc, String foodOriginalPrice, String foodImage, String foodDiscountedPrice, String foodType, String foodUserid) {
-        this.foodId = foodId;
-        this.foodName = foodName;
-        this.foodDesc = foodDesc;
-        this.foodOriginalPrice = foodOriginalPrice;
-        this.foodImage = foodImage;
-        this.foodDiscountedPrice = foodDiscountedPrice;
-        this.foodType = foodType;
-        this.foodUserid = foodUserid;
+    public ModelFoodItem() {
     }
 
-    public String getFoodId() {
-        return foodId;
+    public ModelFoodItem(String foodid, String foodname, String fooddesc, String foodoriginalprice, String foodimage, String fooddiscountedprice, String foodtype, String fooduserid) {
+        this.foodid = foodid;
+        this.foodname = foodname;
+        this.fooddesc = fooddesc;
+        this.foodoriginalprice = foodoriginalprice;
+        this.foodimage = foodimage;
+        this.fooddiscountedprice = fooddiscountedprice;
+        this.foodtype = foodtype;
+        this.fooduserid = fooduserid;
     }
 
-    public void setFoodId(String foodId) {
-        this.foodId = foodId;
+    public String getFoodid() {
+        return foodid;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public void setFoodid(String foodid) {
+        this.foodid = foodid;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public String getFoodname() {
+        return foodname;
     }
 
-    public String getFoodDesc() {
-        return foodDesc;
+    public void setFoodname(String foodname) {
+        this.foodname = foodname;
     }
 
-    public void setFoodDesc(String foodDesc) {
-        this.foodDesc = foodDesc;
+    public String getFooddesc() {
+        return fooddesc;
     }
 
-    public String getFoodOriginalPrice() {
-        return foodOriginalPrice;
+    public void setFooddesc(String fooddesc) {
+        this.fooddesc = fooddesc;
     }
 
-    public void setFoodOriginalPrice(String foodOriginalPrice) {
-        this.foodOriginalPrice = foodOriginalPrice;
+    public String getFoodoriginalprice() {
+        return foodoriginalprice;
     }
 
-    public String getFoodImage() {
-        return foodImage;
+    public void setFoodoriginalprice(String foodoriginalprice) {
+        this.foodoriginalprice = foodoriginalprice;
     }
 
-    public void setFoodImage(String foodImage) {
-        this.foodImage = foodImage;
+    public String getFoodimage() {
+        return foodimage;
     }
 
-    public String getFoodDiscountedPrice() {
-        return foodDiscountedPrice;
+    public void setFoodimage(String foodimage) {
+        this.foodimage = foodimage;
     }
 
-    public void setFoodDiscountedPrice(String foodDiscountedPrice) {
-        this.foodDiscountedPrice = foodDiscountedPrice;
+    public String getFooddiscountedprice() {
+        return fooddiscountedprice;
     }
 
-    public String getFoodType() {
-        return foodType;
+    public void setFooddiscountedprice(String fooddiscountedprice) {
+        this.fooddiscountedprice = fooddiscountedprice;
     }
 
-    public void setFoodType(String foodType) {
-        this.foodType = foodType;
+    public String getFoodtype() {
+        return foodtype;
     }
 
-    public String getFoodUserid() {
-        return foodUserid;
+    public void setFoodtype(String foodtype) {
+        this.foodtype = foodtype;
     }
 
-    public void setFoodUserid(String foodUserid) {
-        this.foodUserid = foodUserid;
+    public String getFooduserid() {
+        return fooduserid;
+    }
+
+    public void setFooduserid(String fooduserid) {
+        this.fooduserid = fooduserid;
     }
 }

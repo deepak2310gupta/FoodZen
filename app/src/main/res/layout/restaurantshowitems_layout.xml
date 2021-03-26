@@ -56,7 +56,7 @@
                     android:id="@+id/itemTypeImageIcon"/>
 
                 <TextView
-                    android:id="@+id/FoodItemName"
+                    android:id="@+id/FoodItemNameNew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/itemTypeImageIcon"
@@ -70,42 +70,45 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/FoodItemOriginalPrice"
+                    android:id="@+id/FoodItemOriginalPriceNew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/FoodItemName"
+                    android:layout_below="@id/FoodItemNameNew"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:fontFamily="@font/gudea"
                     android:text="Rs 100"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/FoodItemDiscountedPrice"
+                    android:id="@+id/FoodItemDiscountedPriceNew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/FoodItemName"
+                    android:layout_below="@id/FoodItemNameNew"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_toEndOf="@id/FoodItemOriginalPrice"
+                    android:layout_toEndOf="@id/FoodItemOriginalPriceNew"
                     android:fontFamily="@font/gudea"
                     android:text="Rs 50"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/FoodItemDescription"
+                    android:id="@+id/FoodItemDescriptionNew"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/FoodItemOriginalPrice"
+                    android:layout_below="@id/FoodItemOriginalPriceNew"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginRight="50dp"
                     android:fontFamily="@font/gudea"
                     android:maxLines="2"
+                    android:textStyle="bold"
                     android:text="Description In Maximum 2 Lines Description In Maximum 2 Lines"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
