@@ -45,14 +45,18 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         String txtFoodOriPrice=modelAddProducts.getOriPrice();
         String txtFoodDiscPrice=modelAddProducts.getDiscountPrice();
         //String txtFoodImg=modelAddProducts.get();
-        //String txtFoodType=modelAddProducts.getFoodType();
+        String txtFoodType=modelAddProducts.getItemType();
 
         holder.FoodItemName.setText(txtFoodName);
         holder.FoodItemDescription.setText(txtFoodDesc);
         holder.FoodItemOriginalPrice.setText(txtFoodOriPrice);
         holder.FoodItemDiscountedPrice.setText(txtFoodDiscPrice);
 
-
+        if(txtFoodType.equals("Veg")){
+            Picasso.get().load(R.drawable.vegpic).into(holder.itemTypeImageIcon);
+        }else{
+            Picasso.get().load(R.drawable.nonvegpic).into(holder.itemTypeImageIcon);
+        }
 
     }
 
