@@ -127,7 +127,7 @@
             android:layout_margin="7dp"
             android:textColor="#199F79"
             android:textColorHint="@color/black"
-            android:inputType="textPersonName|phone"
+            android:inputType="textPersonName"
             android:fontFamily="@font/signika_semibold"
             android:id="@+id/addProductDiscountedNoteNew"
             android:textSize="16sp"/>

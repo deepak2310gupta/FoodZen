@@ -54,6 +54,9 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
             public void onClick(View v) {
                 Intent intent=new Intent(context, RestaurantShowItemsActivity.class);
                 intent.putExtra("ResShopId",userId);
+                intent.putExtra("ResShopName",txtRName);
+                intent.putExtra("ResShopAddress",txtRaddress);
+                intent.putExtra("ResCategory",txtRcategory);
                 context.startActivity(intent);
             }
         });

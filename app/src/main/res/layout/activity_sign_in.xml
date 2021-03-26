@@ -27,7 +27,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="110dp"
                 android:background="@drawable/ic_wavebg"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -36,6 +36,7 @@
                 android:text="Already \nhave an \nAccount !"
                 android:layout_marginStart="20dp"
                 android:padding="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
                 android:textSize="25dp"
@@ -72,7 +73,7 @@
                 android:text="Forgot Password"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="13dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="end"
@@ -101,13 +102,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dont Have An Account Yet ? Register Now"
+                android:text="Don't Have An Account Yet ? Register Now"
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:id="@+id/DontHaveAnAccountYet"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/signika_semibold"
                 android:gravity="center_horizontal" />

@@ -19,6 +19,11 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Pattern;
 
@@ -66,10 +71,7 @@ public class SignInActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(txtEmail, txtPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult){
-                Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
-                startActivity(intent);
-                finish();
+                checkUserType();
                 return;
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -82,6 +84,39 @@ public class SignInActivity extends AppCompatActivity {
         });
 
     }
+
+    private void checkUserType(){
+
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("TotalAppUsers");
+        databaseReference.orderByChild("uid").equalTo(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+             for(DataSnapshot ds:snapshot.getChildren()){
+
+                 String accounttype=""+ds.child("usertype").getValue();
+                 if(accounttype.equals("User")){
+                     Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
+                     startActivity(intent);
+                     Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                     finish();
+                     return;
+                 }
+                 else{
+                     Intent intent = new Intent(SignInActivity.this, DashboardSellerActivity.class);
+                     startActivity(intent);
+                     Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                     finish();
+                     return;
+                 }
+             }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SignInActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void initViews() {
 
         logiUserButton=findViewById(R.id.logiUserButton);
