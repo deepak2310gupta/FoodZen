@@ -6,10 +6,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.foodzen.CollectionFragments.AddProductFragment;
-import com.example.foodzen.CollectionFragments.FavouritesFragment;
-import com.example.foodzen.CollectionFragments.HomeFragment;
 import com.example.foodzen.CollectionFragments.HomeSellerFragment;
 import com.example.foodzen.CollectionFragments.ProfileFragment;
+import com.example.foodzen.CollectionFragments.AddPromoCodesFragment;
 import com.example.foodzen.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -47,6 +46,12 @@ public class DashboardSellerActivity extends AppCompatActivity {
                         FragmentTransaction fragmentTransactionAgain3 = getSupportFragmentManager().beginTransaction();
                         fragmentTransactionAgain3.replace(R.id.collectionfragmentsReplacerForSeller, profileFragment,"").commit();
                         break;
+                    case R.id.promoCodesSeller:
+                        AddPromoCodesFragment promoCodesFragment = new AddPromoCodesFragment();
+                        FragmentTransaction fragmentTransactionAgain4 = getSupportFragmentManager().beginTransaction();
+                        fragmentTransactionAgain4.replace(R.id.collectionfragmentsReplacerForSeller, promoCodesFragment,"").commit();
+                        break;
+
                 }
             }
         });

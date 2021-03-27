@@ -1,6 +1,7 @@
 package com.example.foodzen.CollectionAdapters;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         holder.FoodItemDescription.setText(txtFoodDesc);
         holder.FoodItemOriginalPrice.setText(txtFoodOriPrice);
         holder.FoodItemDiscountedPrice.setText(txtFoodDiscPrice);
+        holder.FoodItemOriginalPrice.setPaintFlags( holder.FoodItemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         if(txtFoodType.equals("Veg")){
             Picasso.get().load(R.drawable.vegpic).into(holder.itemTypeImageIcon);

@@ -21,6 +21,17 @@
         app:cnb_iconTintMode="src_in"
         app:cnb_textColor="#178767" />
 
+
+    <item
+        android:id="@+id/promoCodesSeller"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_local_offer_24"
+        android:title="Add Promo Codes"
+        app:cnb_backgroundColor="#ADFDE6"
+        app:cnb_iconColor="#178767"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#178767" />
+
     <item
         android:id="@+id/profileSeller"
         android:enabled="true"
@@ -30,5 +41,7 @@
         app:cnb_iconColor="#178767"
         app:cnb_iconTintMode="src_in"
         app:cnb_textColor="#178767" />
+
+
 
 </menu>

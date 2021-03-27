@@ -84,8 +84,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="5dp"
+                tools:listitem="@layout/promorows_layout"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:id="@+id/offRecyclerViewCollections"/>
+                android:id="@+id/PromoCodesRecyclerViewCollections"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

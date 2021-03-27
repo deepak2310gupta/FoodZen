@@ -27,7 +27,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="130dp"
                     android:layout_height="110dp"
-                    app:cardCornerRadius="18dp">
+                    app:cardCornerRadius="14dp">
                     <ImageView
                         android:layout_width="130dp"
                         android:scaleType="fitXY"
@@ -62,7 +62,7 @@
                     android:layout_below="@id/itemTypeImageIcon"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="3dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="40dp"
                     android:fontFamily="@font/gudea"
                     android:text="Tandoori Chaap"
                     android:textColor="@color/black"
@@ -80,7 +80,7 @@
                     android:fontFamily="@font/gudea"
                     android:text="Rs 100"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="#EF2323"
                     android:textSize="18dp" />
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:fontFamily="@font/gudea"
                     android:text="Rs 50"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="#27CC2A"
                     android:textSize="18dp" />
 
                 <TextView
@@ -105,9 +105,9 @@
                     android:layout_below="@id/FoodItemOriginalPriceNew"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="1dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="@font/gudea"
-                    android:maxLines="2"
+                    android:maxLines="3"
                     android:textStyle="bold"
                     android:text="Description In Maximum 2 Lines Description In Maximum 2 Lines"
                     android:textColor="@color/black"

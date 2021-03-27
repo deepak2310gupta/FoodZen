@@ -12,10 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodzen.CollectionAdapters.AdapterPromoCodes;
 import com.example.foodzen.CollectionAdapters.AdapterRestaurantItems;
 import com.example.foodzen.CollectionAdapters.AdapterRestaurants;
 import com.example.foodzen.CollectionModels.ModelAddProducts;
 import com.example.foodzen.CollectionModels.ModelFoodItem;
+import com.example.foodzen.CollectionModels.ModelPromoCodes;
 import com.example.foodzen.CollectionModels.ModelSeller;
 import com.example.foodzen.R;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +33,10 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
 
     private RecyclerView RestaurantShowItemsRecyclerView;
     private AdapterRestaurantItems adapterRestaurantItems;
+    private AdapterPromoCodes adapterPromoCodes;
     private ArrayList<ModelAddProducts> modelFoodItemArrayList;
+    private ArrayList<ModelPromoCodes> modelPromoCodesArrayList;
+    private RecyclerView PromoCodesRecyclerViewCollections;
     private String shopId;
     private TextView ShopNameTv,ShopCategoryTv,ShopAddresstv;
     private String shopName,shopAddress,shopCategory;
@@ -53,11 +58,14 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
         ShopCategoryTv.setText(shopCategory);
         ShopAddresstv.setText(shopAddress);
         adapterRestaurantItems=new AdapterRestaurantItems(RestaurantShowItemsActivity.this,modelFoodItemArrayList);
+        adapterPromoCodes=new AdapterPromoCodes(RestaurantShowItemsActivity.this,modelPromoCodesArrayList);
         RestaurantShowItemsRecyclerView.setAdapter(adapterRestaurantItems);
+        PromoCodesRecyclerViewCollections.setAdapter(adapterPromoCodes);
         fssaiAndLicenseLogo.setVisibility(View.VISIBLE);
         Query query= FirebaseDatabase.getInstance().getReference("TotalProductsSeller").orderByChild("productUserId").equalTo(shopId);
         query.addListenerForSingleValueEvent(valueEventListener);
-
+        Query query1=FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(shopId);
+        query1.addListenerForSingleValueEvent(valueEventListenerNew);
         BackToListRestaurants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +81,10 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
         ShopCategoryTv=findViewById(R.id.ShopCategoryTv);
         ShopAddresstv=findViewById(R.id.ShopAddresstv);
         RestaurantShowItemsRecyclerView=findViewById(R.id.RestaurantShowItemsRecyclerView);
+        PromoCodesRecyclerViewCollections=findViewById(R.id.PromoCodesRecyclerViewCollections);
         BackToListRestaurants=findViewById(R.id.BackToListRestaurants);
         modelFoodItemArrayList=new ArrayList<>();
+        modelPromoCodesArrayList=new ArrayList<>();
         fssaiAndLicenseLogo=findViewById(R.id.fssaiAndLicenseLogo);
     }
 
@@ -88,6 +98,24 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
                     modelFoodItemArrayList.add(modelAddProducts);
                 }
                 adapterRestaurantItems.notifyDataSetChanged();
+            }
+        }
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    ValueEventListener valueEventListenerNew=new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+            modelPromoCodesArrayList.clear();
+            if(datasnapshot.exists()){
+                for(DataSnapshot snapshot:datasnapshot.getChildren()){
+                    ModelPromoCodes modelPromoCodes=snapshot.getValue(ModelPromoCodes.class);
+                    modelPromoCodesArrayList.add(modelPromoCodes);
+                }
+                adapterPromoCodes.notifyDataSetChanged();
             }
         }
         @Override

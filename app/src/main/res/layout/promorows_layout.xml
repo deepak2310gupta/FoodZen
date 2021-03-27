@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_margin="4dp"
+    android:layout_height="wrap_content">
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:padding="1dp"
+       android:background="@drawable/promobackground">
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/promoLogoAndName"
+           android:layout_margin="1dp"
+           android:orientation="horizontal">
+           <ImageView
+               android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:layout_margin="2dp"
+               android:id="@+id/promoImageLogo"
+               android:src="@drawable/discountpromologo"/>
+
+           <TextView
+               android:id="@+id/pcTitle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical"
+               android:layout_margin="2dp"
+               android:fontFamily="@font/signika_semibold"
+               android:text="20% OFF UPTO 150"
+               android:textColor="@color/black"
+               android:textSize="16sp"
+               android:textStyle="bold" />
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/promoLogoAndName"
+           android:layout_margin="1dp"
+           android:orientation="horizontal">
+
+           <TextView
+               android:id="@+id/pcName"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical"
+               android:layout_margin="2dp"
+               android:text="USE PARTY"
+               android:textColor="@color/black"
+               android:textSize="14sp"
+               android:textStyle="bold" />
+
+           <View
+               android:layout_width="2dp"
+               android:layout_margin="3dp"
+               android:layout_gravity="center_vertical"
+               android:layout_height="14dp"
+               android:background="@color/black"/>
+
+           <TextView
+               android:id="@+id/pcDesc"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical"
+               android:layout_margin="2dp"
+               android:textColor="@color/black"
+               android:fontFamily="@font/signika_semibold"
+               android:text="ON ORDERS ABOVE 400"
+               android:textSize="14sp" />
+
+       </LinearLayout>
+   </LinearLayout>
+
+
+
+
+</RelativeLayout>

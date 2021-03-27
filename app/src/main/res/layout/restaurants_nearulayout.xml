@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="130dp"
     android:layout_margin="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp">
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="130dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:src="@drawable/dosa"
                 android:id="@+id/RestaurantImage"
                 android:scaleType="fitXY"/>
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:layout_marginTop="-13dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_below="@id/restaurantsImageLayout"
         android:background="@drawable/shopdiscountbackground">
         <TextView
