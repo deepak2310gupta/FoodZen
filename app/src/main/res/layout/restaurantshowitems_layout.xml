@@ -109,6 +109,7 @@
                     android:fontFamily="@font/gudea"
                     android:maxLines="3"
                     android:textStyle="bold"
+                    android:ems="4"
                     android:text="Description In Maximum 2 Lines Description In Maximum 2 Lines"
                     android:textColor="@color/black"
                     android:textSize="15dp" />

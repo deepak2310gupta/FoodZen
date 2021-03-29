@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.foodzen.CollectionAdapters.AdapterRestaurants;
 import com.example.foodzen.CollectionModels.ModelSeller;
 import com.example.foodzen.R;
@@ -35,18 +37,26 @@ public class HomeFragment extends Fragment {
     private RecyclerView RestaurantsRecylerView;
     private AdapterRestaurants adapterRestaurants;
     private ArrayList<ModelSeller>modelSellerList;
+    ImageSlider imageSlider;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_home2, container, false);
         RestaurantsRecylerView=view.findViewById(R.id.RestaurantsRecylerView);
+        imageSlider=view.findViewById(R.id.image_slider);
         RestaurantsRecylerView.setHasFixedSize(true);
         RestaurantsRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
         modelSellerList=new ArrayList<>();
+        List<SlideModel> imageListCollection=new ArrayList<>();
         adapterRestaurants=new AdapterRestaurants(getContext(),modelSellerList);
         RestaurantsRecylerView.setAdapter(adapterRestaurants);
-
+        imageListCollection.add(new SlideModel(R.drawable.sliderfive));
+        imageListCollection.add(new SlideModel(R.drawable.sliderfour));
+        imageListCollection.add(new SlideModel(R.drawable.sliderthird));
+        imageListCollection.add(new SlideModel(R.drawable.slidesix));
+        imageSlider.setImageList(imageListCollection,false);
         Query query= FirebaseDatabase.getInstance().getReference("TotalAppUsers").orderByChild("usertype").equalTo("RestaurantSeller");
         query.addListenerForSingleValueEvent(valueEventListener);
         return  view;

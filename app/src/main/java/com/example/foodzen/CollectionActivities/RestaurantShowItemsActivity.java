@@ -41,6 +41,7 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
     private TextView ShopNameTv,ShopCategoryTv,ShopAddresstv;
     private String shopName,shopAddress,shopCategory;
     ImageButton BackToListRestaurants;
+    private ArrayList<String>ListCategory;
     LinearLayout fssaiAndLicenseLogo;
 
     @Override
@@ -48,12 +49,11 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_show_items);
         initViews();
-
         shopId=getIntent().getStringExtra("ResShopId");
         shopName=getIntent().getStringExtra("ResShopName");
         shopAddress=getIntent().getStringExtra("ResShopAddress");
         shopCategory=getIntent().getStringExtra("ResCategory");
-
+        ListCategory=new ArrayList<>();
         ShopNameTv.setText(shopName);
         ShopCategoryTv.setText(shopCategory);
         ShopAddresstv.setText(shopAddress);
@@ -61,11 +61,11 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
         adapterPromoCodes=new AdapterPromoCodes(RestaurantShowItemsActivity.this,modelPromoCodesArrayList);
         RestaurantShowItemsRecyclerView.setAdapter(adapterRestaurantItems);
         PromoCodesRecyclerViewCollections.setAdapter(adapterPromoCodes);
-        fssaiAndLicenseLogo.setVisibility(View.VISIBLE);
         Query query= FirebaseDatabase.getInstance().getReference("TotalProductsSeller").orderByChild("productUserId").equalTo(shopId);
         query.addListenerForSingleValueEvent(valueEventListener);
         Query query1=FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(shopId);
         query1.addListenerForSingleValueEvent(valueEventListenerNew);
+        FetchTopPicksAccordingToUser();
         BackToListRestaurants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +73,15 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void FetchTopPicksAccordingToUser(){
+
+        for(int i=0;i<ListCategory.size();i++){
+
+            Query query2= FirebaseDatabase.getInstance().getReference("TopPicksCollection").orderByChild("categoryRestaurant").equalTo(ListCategory.get(i));
+            query2.addListenerForSingleValueEvent(valueEventListenerOne);
+        }
     }
 
     private void initViews() {
@@ -98,6 +107,7 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
                     modelFoodItemArrayList.add(modelAddProducts);
                 }
                 adapterRestaurantItems.notifyDataSetChanged();
+                fssaiAndLicenseLogo.setVisibility(View.VISIBLE);
             }
         }
         @Override
@@ -105,7 +115,6 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
             Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
-
     ValueEventListener valueEventListenerNew=new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -123,5 +132,22 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
             Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
-
+    ValueEventListener valueEventListenerOne=new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+            modelFoodItemArrayList.clear();
+            if(datasnapshot.exists()){
+                for(DataSnapshot snapshot:datasnapshot.getChildren()){
+                    ModelAddProducts modelAddProducts=snapshot.getValue(ModelAddProducts.class);
+                    modelFoodItemArrayList.add(modelAddProducts);
+                }
+                adapterRestaurantItems.notifyDataSetChanged();
+                fssaiAndLicenseLogo.setVisibility(View.VISIBLE);
+            }
+        }
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
 }

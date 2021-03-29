@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context=".CollectionActivities.RestaurantShowItemsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
@@ -79,6 +84,14 @@
                 android:layout_height="2dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/view_line_dotted" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trending Promotion Codes"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/signika_semibold"
+                android:layout_marginLeft="8dp"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,8 +102,7 @@
                 android:id="@+id/PromoCodesRecyclerViewCollections"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-     <TextView
+    <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:text="Recomended"
@@ -108,7 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E9F2FB"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:id="@+id/fssaiAndLicenseLogo"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
@@ -129,7 +141,8 @@
             android:layout_gravity="center_horizontal"
             android:text="License Number:123456789Abc"/>
     </LinearLayout>
+    </LinearLayout>
+</ScrollView>
 
 
 
-</LinearLayout>

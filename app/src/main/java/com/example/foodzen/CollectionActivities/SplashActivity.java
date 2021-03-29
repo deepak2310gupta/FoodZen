@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.foodzen.R;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     TextView worldhello;
     @Override
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         worldhello.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, SignInActivity.class);
+                Intent intent=new Intent(SplashActivity.this, SignInActivity.class);
                 startActivity(intent);
             }
         });

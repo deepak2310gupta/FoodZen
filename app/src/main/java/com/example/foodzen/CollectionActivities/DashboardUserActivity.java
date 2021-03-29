@@ -13,7 +13,7 @@ import com.example.foodzen.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardUserActivity extends AppCompatActivity {
 
     ChipNavigationBar menuChipNavigationBar;
     @Override

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="#199F79"
     android:background="#199f79"
-    tools:context=".CollectionActivities.SignUpActivity">
+    tools:context=".CollectionActivities.SignUpUserActivity">
 
 
        <ScrollView

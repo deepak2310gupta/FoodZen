@@ -19,10 +19,10 @@
         <activity
             android:name=".WalkthroughLayout.OnBoardActivity"
             android:exported="true" />
-        <activity android:name=".CollectionActivities.DashboardActivity" />
-        <activity android:name=".CollectionActivities.SignUpActivity" />
+        <activity android:name=".CollectionActivities.DashboardUserActivity" />
+        <activity android:name=".CollectionActivities.SignUpUserActivity" />
         <activity android:name=".CollectionActivities.SignInActivity" />
-        <activity android:name=".CollectionActivities.MainActivity">
+        <activity android:name=".CollectionActivities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

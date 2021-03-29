@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CollectionFragments.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +45,6 @@
             android:layout_toEndOf="@id/ThumbsUpImage"
             android:text="Top Picks For You"/>
     </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,13 +55,32 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
         android:id="@+id/TopPicksRecyclerView"/>
+    <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="200dp"
+       android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+       android:layout_below="@id/TopPicksRecyclerView"
+       android:layout_marginBottom="10dp"
+       app:cardCornerRadius="10dp"
+       android:id="@+id/slidingImagesLayout"
+       android:layout_marginRight="10dp">
 
+       <com.denzcoskun.imageslider.ImageSlider
+           android:layout_width="match_parent"
+           android:layout_height="200dp"
+           android:layout_below="@id/TopPicksRecyclerView"
+           app:period="2000"
+           app:delay="0"
+           app:auto_cycle="true"
+           android:id="@+id/image_slider" />
+   </androidx.cardview.widget.CardView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="All Restaurants Nearby"
         android:layout_margin="5dp"
-        android:layout_below="@id/TopPicksRecyclerView"
+        android:layout_below="@id/slidingImagesLayout"
         android:id="@+id/txtAllRestaurants"
         android:fontFamily="@font/signika_semibold"
         android:textSize="18dp"
@@ -67,8 +97,6 @@
         android:layout_below="@id/txtAllRestaurants"
         android:textStyle="bold"
         android:textColor="#199F79"/>
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,6 +106,8 @@
         android:id="@+id/RestaurantsRecylerView" />
 
 
+        </RelativeLayout>
+    </LinearLayout>
 
 
 
@@ -89,5 +119,4 @@
 
 
 
-
-</RelativeLayout>
+</ScrollView>

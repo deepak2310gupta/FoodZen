@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +49,7 @@ public class SignInActivity extends AppCompatActivity {
         DontHaveAnAccountYet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignInActivity.this,SignUpActivity.class);
+                Intent intent=new Intent(SignInActivity.this, SignUpUserActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -68,34 +69,42 @@ public class SignInActivity extends AppCompatActivity {
         registerProgressLinearIndicator.setIndeterminate(true);
         registerProgressLinearIndicator.setVisibility(View.VISIBLE);
 
-        firebaseAuth.signInWithEmailAndPassword(txtEmail, txtPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult){
-                checkUserType();
-                return;
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                registerProgressLinearIndicator.setVisibility(View.GONE);
-                Toast.makeText(SignInActivity.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
-                return;
-            }
-        });
+        if(TextUtils.isEmpty(txtEmail)|| TextUtils.isEmpty(txtPassword)){
+            registerProgressLinearIndicator.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "Empty Credentials", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+
+            firebaseAuth.signInWithEmailAndPassword(txtEmail, txtPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    checkUserType();
+                    return;
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    registerProgressLinearIndicator.setVisibility(View.GONE);
+                    Toast.makeText(SignInActivity.this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+            });
+        }
 
     }
 
     private void checkUserType(){
 
         DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-        databaseReference.orderByChild("uid").equalTo(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("uid").equalTo(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
              for(DataSnapshot ds:snapshot.getChildren()){
 
                  String accounttype=""+ds.child("usertype").getValue();
                  if(accounttype.equals("User")){
-                     Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
+                     Intent intent = new Intent(SignInActivity.this, DashboardUserActivity.class);
                      startActivity(intent);
                      Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                      finish();

@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodzen.CollectionModels.ModelUsers;
 import com.example.foodzen.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpUserActivity extends AppCompatActivity {
 
     Button registerButton;
     FirebaseAuth firebaseAuth;
@@ -50,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
+                Intent intent=new Intent(SignUpUserActivity.this,SignInActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -71,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         txtForSellerRegisteration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignUpActivity.this,SignUpSellerActivity.class);
+                Intent intent=new Intent(SignUpUserActivity.this,SignUpSellerActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -129,8 +128,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 hashMap.put("usertype","User");
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
                                 databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(hashMap);
-                                Toast.makeText(SignUpActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUpActivity.this, DashboardActivity.class);
+                                Toast.makeText(SignUpUserActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpUserActivity.this, DashboardUserActivity.class);
                                 startActivity(intent);
                                 finish();
                                 return;
@@ -140,7 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     registerProgressLinearIndicator.setVisibility(View.GONE);
-                    Toast.makeText(SignUpActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpUserActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
             });
