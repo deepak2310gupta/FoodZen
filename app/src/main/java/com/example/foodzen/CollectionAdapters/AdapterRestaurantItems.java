@@ -1,6 +1,9 @@
 package com.example.foodzen.CollectionAdapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodzen.CollectionModels.ModelAddProducts;
+import com.example.foodzen.CollectionModels.ModelCartItems;
 import com.example.foodzen.CollectionModels.ModelFoodItem;
 import com.example.foodzen.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -33,7 +37,8 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
 
     Context context;
     ArrayList<ModelAddProducts>modelAddProductsArrayList;
-    int itemIDCart=1;
+
+
 
     public AdapterRestaurantItems(Context context, ArrayList<ModelAddProducts> modelAddProductsArrayList) {
         this.context = context;
@@ -55,7 +60,6 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         String txtFoodDesc=modelAddProducts.getpDesc();
         String txtFoodOriPrice=modelAddProducts.getOriPrice();
         String txtFoodDiscPrice=modelAddProducts.getDiscountPrice();
-        //String txtFoodImg=modelAddProducts.get();
         String txtFoodType=modelAddProducts.getItemType();
 
         holder.FoodItemName.setText(txtFoodName);
@@ -73,8 +77,11 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         holder.addProductLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showCartBottomDialog(modelAddProducts);
+
             }
+
         });
 
     }
@@ -143,54 +150,68 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         addItemToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCartProgressIndicator.setIndeterminate(true);
-                addCartProgressIndicator.setVisibility(View.VISIBLE);
-                Toast.makeText(context, "Adding To Cart....", Toast.LENGTH_SHORT).show();
+                 addCartProgressIndicator.setIndeterminate(true);
+                 addCartProgressIndicator.setVisibility(View.VISIBLE);
+                 Toast.makeText(context, "Adding To Cart....", Toast.LENGTH_SHORT).show();
                  String cartFoodName=cartBottomFoodName.getText().toString().trim();
                  String cartFoodQuantity=tvQuantity.getText().toString().trim();
                  String cartFoodPrice=dialogDiscountedprice.getText().toString().trim();
                  String cartUserId=modelAddProducts.getProductUserId();
                  String cartProductId=modelAddProducts.getpId();
                  String FoodOriginalTotalPrice=dialogOriginalPrice.getText().toString().trim();
-                AddToCartDatabase(cartFoodName,cartFoodQuantity,cartFoodPrice,cartUserId,cartProductId,FoodOriginalTotalPrice,addCartProgressIndicator);
-               // bottomSheetDialog.dismiss();
+                 AddToCartDatabase(cartFoodName,cartFoodQuantity,cartFoodPrice,cartUserId,cartProductId,FoodOriginalTotalPrice,addCartProgressIndicator,bottomSheetDialog);
+
             }
         });
     }
 
-    private void AddToCartDatabase(String cartFoodName, String cartFoodQuantity, String cartFoodPrice, String cartUserId, String cartProductId, String foodOriginalTotalPrice, ProgressBar addCartProgressIndicator) {
-        EasyDB easyDB = EasyDB.init(context, "FoodZenDbName"+cartUserId)
-                .setTableName("Cart_Items_Table"+cartUserId)
-                .addColumn(new Column("FoodPid",new String[]{"text", "not null"}))
-                .addColumn(new Column("FoodPName",new String[]{"text", "not null"}))
-                .addColumn(new Column("FoodTotalOriginalPrice",new String[]{"text", "not null"}))
-                .addColumn(new Column("FoodQuantity", new String[]{"text", "not null"}))
-                .addColumn(new Column("FoodTotalDiscountedPrice", new String[]{"text", "not null"}))
-                .addColumn(new Column("FoodTotalPrice", new String[]{"text", "not null"}))
+
+    private int itemId=1;
+
+    private void AddToCartDatabase(String cartFoodName, String cartFoodQuantity, String cartFoodPrice, String cartUserId, String cartProductId, String foodOriginalTotalPrice, ProgressBar addCartProgressIndicator,BottomSheetDialog bottomSheetDialog) {
+        itemId++;
+        EasyDB easyDBBest = EasyDB.init(context, "It_124")
+                .setTableName("Items")
+                .addColumn(new Column("rowid",new String[]{"text", "unique"}))
+                .addColumn(new Column("foodPid",new String[]{"text", "not null"}))
+                .addColumn(new Column("foodPName",new String[]{"text", "not null"}))
+                .addColumn(new Column("foodUserName",new String[]{"text", "not null"}))
+                .addColumn(new Column("foodTotalOriginalPrice",new String[]{"text", "not null"}))
+                .addColumn(new Column("foodQuantity", new String[]{"text", "not null"}))
+                .addColumn(new Column("foodTotalDiscountedPrice", new String[]{"text", "not null"}))
+                .addColumn(new Column("foodTotalPrice", new String[]{"text", "not null"}))
                 .doneTableColumn();
-        boolean add=easyDB
-                .addData("FoodPid",cartProductId).addData("FoodPName",cartFoodName).addData("FoodTotalOriginalPrice",foodOriginalTotalPrice)
-                .addData("FoodQuantity",cartFoodQuantity).addData("FoodTotalDiscountedPrice",cartFoodPrice)
-                .addData("FoodTotalPrice",cartFoodPrice).doneDataAdding();
+        Boolean add=easyDBBest
+                .addData("rowid",itemId)
+                .addData("foodPid",cartProductId)
+                .addData("foodPName",cartFoodName)
+                .addData("foodUserName",cartUserId)
+                .addData("foodTotalOriginalPrice",foodOriginalTotalPrice)
+                .addData("foodQuantity",cartFoodQuantity)
+                .addData("foodTotalDiscountedPrice",cartFoodPrice)
+                .addData("foodTotalPrice",cartFoodPrice)
+                .doneDataAdding();
 
         if(add && cartFoodPrice.equals("0")){
             addCartProgressIndicator.setVisibility(View.GONE);
             Toast.makeText(context, "Error !! Item Not Added To Cart", Toast.LENGTH_SHORT).show();
+            bottomSheetDialog.dismiss();
             return;
         }
         if(add){
             addCartProgressIndicator.setVisibility(View.GONE);
             Toast.makeText(context, "Item Added To Cart Successfully", Toast.LENGTH_SHORT).show();
+            bottomSheetDialog.dismiss();
             return;
         }
         else{
             addCartProgressIndicator.setVisibility(View.GONE);
             Toast.makeText(context, " Error !! Item Not Added To Cart....", Toast.LENGTH_SHORT).show();
+            bottomSheetDialog.dismiss();
             return;
         }
 
     }
-
 
     @Override
     public int getItemCount() {

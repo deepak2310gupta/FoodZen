@@ -29,7 +29,6 @@ public class AddProductFragment extends Fragment {
 
     Button addProductButtonDetails;
     FirebaseAuth firebaseAuth;
-    FirebaseUser user;
     LinearProgressIndicator addProductLinearIndicator;
     EditText addProductName,addProductDescription,addproductOriginalPrice,addProductItemType,addProductDiscountedPrice,addProductDiscountedNote;
     public AddProductFragment() {}
@@ -40,7 +39,6 @@ public class AddProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View viewNewest= inflater.inflate(R.layout.fragment_add_product, container, false);
         firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
         addProductButtonDetails=viewNewest.findViewById(R.id.addProductButtonDetailsNew);
         addProductName=viewNewest.findViewById(R.id.addProductNameNew);
         addProductDescription=viewNewest.findViewById(R.id.addProductDescriptionNew);
@@ -79,7 +77,7 @@ public class AddProductFragment extends Fragment {
         }
 
         else {
-
+            FirebaseUser user=firebaseAuth.getCurrentUser();
             HashMap<String,Object>hashMap=new HashMap<>();
             hashMap.put("pId","" + timeValueStamp);
             hashMap.put("pName","" + txtproductName);

@@ -32,7 +32,6 @@ public class AddPromoCodesFragment extends Fragment {
     Button addPromoCodesButtonNew;
     LinearProgressIndicator addPromoCodeLinearIndicatorNew;
     FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
 
 
 
@@ -41,7 +40,6 @@ public class AddPromoCodesFragment extends Fragment {
         // Inflate the layout for this fragment
         View viewPromo= inflater.inflate(R.layout.fragment_promo_codes, container, false);
         firebaseAuth=FirebaseAuth.getInstance();
-        firebaseUser=firebaseAuth.getCurrentUser();
         initViews(viewPromo);
 
         addPromoCodesButtonNew.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +69,7 @@ public class AddPromoCodesFragment extends Fragment {
         }
 
         else {
-
+            FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
             HashMap<String,Object>hashPromoCodes=new HashMap<>();
             hashPromoCodes.put("promoCodeid","" + timeValueStamp);
             hashPromoCodes.put("promocodename","" + txtpromoName);

@@ -31,7 +31,6 @@ public class SignUpUserActivity extends AppCompatActivity {
 
     Button registerButton;
     FirebaseAuth firebaseAuth;
-    FirebaseUser user;
     TextView alreadyHaveAccount,txtForSellerRegisteration;
     EditText registerPasswordEt,registerNameEt,registerMobileEt,registerAddressEt,registerEmailEt;
     Pattern pattern;
@@ -43,7 +42,6 @@ public class SignUpUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         initViews();
         firebaseAuth=FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
         pattern = Patterns.EMAIL_ADDRESS;
 
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
@@ -119,15 +117,17 @@ public class SignUpUserActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+
+                                FirebaseUser user=firebaseAuth.getCurrentUser();
                                 HashMap<String,Object> hashMap=new HashMap<>();
                                 hashMap.put("name","" + txtname);
                                 hashMap.put("phone","" + txtphone);
                                 hashMap.put("address", "" + txtaddress);
                                 hashMap.put("email","" + txtemail);
-                                hashMap.put("uid","" + firebaseAuth.getCurrentUser().getUid());
+                                hashMap.put("uid","" + user.getUid());
                                 hashMap.put("usertype","User");
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-                                databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(hashMap);
+                                databaseReference.child(user.getUid()).setValue(hashMap);
                                 Toast.makeText(SignUpUserActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUpUserActivity.this, DashboardUserActivity.class);
                                 startActivity(intent);

@@ -33,7 +33,6 @@ public class SignUpSellerActivity extends AppCompatActivity {
 
     Button registerButtonN;
     FirebaseAuth firebaseAuthNew;
-    FirebaseUser userNew;
     TextView alreadyHaveAccountSellerNew;
     EditText registerShopPasswordEtN,registerShopNameEtN,registerCategoryEtN,registerShopAddressEtN,registerShopEmailEtN,registerShopDiscount;
     Pattern pattern;
@@ -43,7 +42,6 @@ public class SignUpSellerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_seller);
         firebaseAuthNew=FirebaseAuth.getInstance();
-        userNew = firebaseAuthNew.getCurrentUser();
         pattern = Patterns.EMAIL_ADDRESS;
 
         initViews();
@@ -88,17 +86,17 @@ public class SignUpSellerActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
+                        FirebaseUser userNew=firebaseAuthNew.getCurrentUser();
                         HashMap<String,Object>hashMapSeller=new HashMap<>();
                         hashMapSeller.put("name","" + txtShopName);
                         hashMapSeller.put("category","" + txtShopCategory);
                         hashMapSeller.put("address", "" + txtShopAdress);
                         hashMapSeller.put("email","" + txtEmailIdShop);
-                        hashMapSeller.put("uid","" + firebaseAuthNew.getCurrentUser().getUid());
+                        hashMapSeller.put("uid","" + userNew.getUid());
                         hashMapSeller.put("usertype","RestaurantSeller");
                         hashMapSeller.put("discountnote",""+txtDiscoutNote);
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-                        databaseReference.child(firebaseAuthNew.getCurrentUser().getUid()).setValue(hashMapSeller);
+                        databaseReference.child(userNew.getUid()).setValue(hashMapSeller);
                         Toast.makeText(SignUpSellerActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpSellerActivity.this, DashboardSellerActivity.class);
                         startActivity(intent);

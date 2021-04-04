@@ -2,29 +2,37 @@ package com.example.foodzen.CollectionActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 
 import com.example.foodzen.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    TextView worldhello;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
-        worldhello=findViewById(R.id.worldhello);
-        worldhello.setOnClickListener(new View.OnClickListener() {
+
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(SplashActivity.this, SignInActivity.class);
+            public void run() {
+                Intent intent=new Intent(SplashActivity.this,SignInActivity.class);
                 startActivity(intent);
+                finish();
             }
-        });
+        },2950);
+
+        Animation animZoomIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoomin);
+        findViewById(R.id.cardSplash).startAnimation(animZoomIn);
+
     }
 
 

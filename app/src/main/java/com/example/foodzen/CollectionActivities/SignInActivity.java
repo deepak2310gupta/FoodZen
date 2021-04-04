@@ -70,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
         registerProgressLinearIndicator.setVisibility(View.VISIBLE);
 
         if(TextUtils.isEmpty(txtEmail)|| TextUtils.isEmpty(txtPassword)){
-            registerProgressLinearIndicator.setVisibility(View.VISIBLE);
+            registerProgressLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(this, "Empty Credentials", Toast.LENGTH_SHORT).show();
             return;
         }
