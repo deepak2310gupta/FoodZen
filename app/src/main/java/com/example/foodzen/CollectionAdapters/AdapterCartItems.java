@@ -42,7 +42,8 @@ public class AdapterCartItems extends RecyclerView.Adapter<AdapterCartItems.Cart
     @Override
     public void onBindViewHolder(@NonNull CartItemsHolder holder, int position){
         ModelCartItems modelCartItems=modelCartItemsArrayList.get(position);
-
+        String id=modelCartItems.getFoodid();
+        String help=modelCartItems.getFoodUserName();
         holder.cartListFoodName.setText(modelCartItems.getFoodPName());
         holder.CartFinalQuantity.setText(modelCartItems.getFoodQuantity());
         holder.CartfinalItemPrice.setText(modelCartItems.getFoodTotalDiscountedPrice());
@@ -50,50 +51,45 @@ public class AdapterCartItems extends RecyclerView.Adapter<AdapterCartItems.Cart
         holder.DeleteCartItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteParticularItem(modelCartItems,position);
+                EasyDB easyDBBestNew = EasyDB.init(context, help)
+                        .setTableName("Items")
+                        .addColumn(new Column("foodid",new String[]{"text", "unique"}))
+                        .addColumn(new Column("foodPid",new String[]{"text", "not null"}))
+                        .addColumn(new Column("foodPName",new String[]{"text", "not null"}))
+                        .addColumn(new Column("foodUserName",new String[]{"text", "not null"}))
+                        .addColumn(new Column("foodTotalOriginalPrice",new String[]{"text", "not null"}))
+                        .addColumn(new Column("foodQuantity", new String[]{"text", "not null"}))
+                        .addColumn(new Column("foodTotalDiscountedPrice", new String[]{"text", "not null"}))
+                        .addColumn(new Column("foodTotalPrice", new String[]{"text", "not null"}))
+                        .doneTableColumn();
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                builder.setTitle("Delete Item ?");
+                builder.setMessage("Do You Want To Delete "+modelCartItems.getFoodPName()+" From Cart ?");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        easyDBBestNew.deleteRow(1,id);
+                        modelCartItemsArrayList.remove(position);
+                        notifyItemChanged(position);
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Item Removed Successfully!!", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create();
+                builder.show();
+
             }
         });
     }
-
-    private void deleteParticularItem(ModelCartItems modelCartItems, int position) {
-
-        EasyDB easyDBBest = EasyDB.init(context, "It_124")
-                .setTableName("Items")
-                .addColumn(new Column("rowid",new String[]{"text", "unique"}))
-                .addColumn(new Column("foodPid",new String[]{"text", "not null"}))
-                .addColumn(new Column("foodPName",new String[]{"text", "not null"}))
-                .addColumn(new Column("foodUserName",new String[]{"text", "not null"}))
-                .addColumn(new Column("foodTotalOriginalPrice",new String[]{"text", "not null"}))
-                .addColumn(new Column("foodQuantity", new String[]{"text", "not null"}))
-                .addColumn(new Column("foodTotalDiscountedPrice", new String[]{"text", "not null"}))
-                .addColumn(new Column("foodTotalPrice", new String[]{"text", "not null"}))
-                .doneTableColumn();
-
-        AlertDialog.Builder builder=new AlertDialog.Builder(context);
-        builder.setTitle("Delete Item ?");
-        builder.setMessage("Do You Want To Delete "+modelCartItems.getFoodPName()+" From Cart ?");
-
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                easyDBBest.deleteRow(Integer.parseInt(modelCartItems.getRowid()));
-                modelCartItemsArrayList.remove(position);
-                notifyItemChanged(position);
-                notifyDataSetChanged();
-                dialog.dismiss();
-                Toast.makeText(context, "Item Removed Successfully!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create();
-        builder.show();
-    }
-
 
     @Override
     public int getItemCount() {

@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseUser user;
     Pattern pattern;
     EditText loginEmailEt,loginPasswordEt;
+    ImageView newUserREG;
     LinearProgressIndicator registerProgressLinearIndicator;
     TextView DontHaveAnAccountYet;
     @Override
@@ -60,6 +62,15 @@ public class SignInActivity extends AppCompatActivity {
                 String txtEmail=loginEmailEt.getText().toString().trim();
                 String txtPassword=loginPasswordEt.getText().toString().trim();
                 loginUserFunction(txtEmail,txtPassword);
+            }
+        });
+
+        newUserREG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SignInActivity.this, SignUpUserActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -132,6 +143,7 @@ public class SignInActivity extends AppCompatActivity {
         registerProgressLinearIndicator=findViewById(R.id.linearIndicatorProg);
         loginPasswordEt=findViewById(R.id.loginPasswordEt);
         loginEmailEt=findViewById(R.id.loginEmailEt);
+        newUserREG=findViewById(R.id.newUserREG);
         DontHaveAnAccountYet=findViewById(R.id.DontHaveAnAccountYet);
 
     }

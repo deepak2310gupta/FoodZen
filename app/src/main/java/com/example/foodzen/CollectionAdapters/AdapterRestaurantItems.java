@@ -3,6 +3,7 @@ package com.example.foodzen.CollectionAdapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -19,22 +20,36 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodzen.CollectionActivities.DashboardSellerActivity;
+import com.example.foodzen.CollectionActivities.DashboardUserActivity;
+import com.example.foodzen.CollectionActivities.SignInActivity;
 import com.example.foodzen.CollectionModels.ModelAddProducts;
 import com.example.foodzen.CollectionModels.ModelCartItems;
 import com.example.foodzen.CollectionModels.ModelFoodItem;
 import com.example.foodzen.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
 
 public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaurantItems.ShopItemsHolder> {
 
-
+    FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseUser user=auth.getCurrentUser();
     Context context;
     ArrayList<ModelAddProducts>modelAddProductsArrayList;
 
@@ -91,6 +106,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         View view=LayoutInflater.from(context).inflate(R.layout.bottomdialogproductdetails,null);
         ImageButton decrementButton=view.findViewById(R.id.decrementButton);
         ImageButton incrementButton=view.findViewById(R.id.incrementButton);
+        ImageButton FavouriteFoodButton=view.findViewById(R.id.FavouriteFoodButton);
         TextView tvQuantity=view.findViewById(R.id.tvQuantity);
         Button addItemToCartButton=view.findViewById(R.id.addItemToCartButton);
         ProgressBar addCartProgressIndicator=view.findViewById(R.id.addCartProgressIndicator);
@@ -163,16 +179,65 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
 
             }
         });
+
+        FavouriteFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddtoUserFavouriteList(modelAddProducts);
+            }
+        });
+    }
+
+    private void AddtoUserFavouriteList(ModelAddProducts modelAddProducts) {
+
+
+
+        DatabaseReference database= FirebaseDatabase.getInstance().getReference("TotalAppUsers");
+        database.child(modelAddProducts.getProductUserId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String shopName =""+snapshot.child("name").getValue();
+                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("TotalLikedFoods");
+                String timestamp= String.valueOf(System.currentTimeMillis());
+                HashMap<String,Object>hashMap=new HashMap<>();
+                hashMap.put("likedfoodid",timestamp);
+                hashMap.put("likedfoodname",modelAddProducts.getpName());
+                hashMap.put("likedfoodshopname", shopName);
+                hashMap.put("likedfooduserid",user.getUid());
+                hashMap.put("likedfoodoriprice",modelAddProducts.getOriPrice());
+                hashMap.put("likedfooddiscountprice",modelAddProducts.getDiscountPrice());
+                hashMap.put("likedfooditemtype",modelAddProducts.getItemType());
+                hashMap.put("likedfooddiscountnote",modelAddProducts.getDiscontNote());
+                databaseReference.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "Added To Favourites List", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(context, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
-    private int itemId=1;
-
+    private int itemID=1;
     private void AddToCartDatabase(String cartFoodName, String cartFoodQuantity, String cartFoodPrice, String cartUserId, String cartProductId, String foodOriginalTotalPrice, ProgressBar addCartProgressIndicator,BottomSheetDialog bottomSheetDialog) {
-        itemId++;
-        EasyDB easyDBBest = EasyDB.init(context, "It_124")
+
+        itemID++;
+        EasyDB easyDBBestNew = EasyDB.init(context, user.getUid())
                 .setTableName("Items")
-                .addColumn(new Column("rowid",new String[]{"text", "unique"}))
+                .addColumn(new Column("foodid",new String[]{"text", "unique"}))
                 .addColumn(new Column("foodPid",new String[]{"text", "not null"}))
                 .addColumn(new Column("foodPName",new String[]{"text", "not null"}))
                 .addColumn(new Column("foodUserName",new String[]{"text", "not null"}))
@@ -181,8 +246,8 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
                 .addColumn(new Column("foodTotalDiscountedPrice", new String[]{"text", "not null"}))
                 .addColumn(new Column("foodTotalPrice", new String[]{"text", "not null"}))
                 .doneTableColumn();
-        Boolean add=easyDBBest
-                .addData("rowid",itemId)
+        Boolean add=easyDBBestNew
+                .addData("foodid",itemID)
                 .addData("foodPid",cartProductId)
                 .addData("foodPName",cartFoodName)
                 .addData("foodUserName",cartUserId)

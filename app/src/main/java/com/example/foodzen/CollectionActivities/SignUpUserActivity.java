@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class SignUpUserActivity extends AppCompatActivity {
     TextView alreadyHaveAccount,txtForSellerRegisteration;
     EditText registerPasswordEt,registerNameEt,registerMobileEt,registerAddressEt,registerEmailEt;
     Pattern pattern;
+    ImageView BackToLogin;
     LinearProgressIndicator registerProgressLinearIndicator;
 
     @Override
@@ -74,6 +76,15 @@ public class SignUpUserActivity extends AppCompatActivity {
             }
         });
 
+        BackToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SignUpUserActivity.this,SignInActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     private void initViews() {
@@ -87,6 +98,7 @@ public class SignUpUserActivity extends AppCompatActivity {
         registerEmailEt=findViewById(R.id.registerEmailEt);
         registerProgressLinearIndicator=findViewById(R.id.registerProgressLinearIndicator);
         txtForSellerRegisteration=findViewById(R.id.txtForSellerRegisteration);
+        BackToLogin=findViewById(R.id.BackToLogin);
 
     }
 

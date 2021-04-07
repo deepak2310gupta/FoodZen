@@ -3,13 +3,13 @@ package com.example.foodzen.CollectionModels;
 public class ModelCartItems {
 
 
-    private String rowid,foodPid,foodPName,foodUserName,foodTotalOriginalPrice,foodQuantity,foodTotalDiscountedPrice,foodTotalPrice;
+    private String foodid,foodPid,foodPName,foodUserName,foodTotalOriginalPrice,foodQuantity,foodTotalDiscountedPrice,foodTotalPrice;
 
     public ModelCartItems() {
     }
 
-    public ModelCartItems(String rowid, String foodPid, String foodPName, String foodUserName, String foodTotalOriginalPrice, String foodQuantity, String foodTotalDiscountedPrice, String foodTotalPrice) {
-        this.rowid = rowid;
+    public ModelCartItems(String foodid, String foodPid, String foodPName, String foodUserName, String foodTotalOriginalPrice, String foodQuantity, String foodTotalDiscountedPrice, String foodTotalPrice) {
+        this.foodid = foodid;
         this.foodPid = foodPid;
         this.foodPName = foodPName;
         this.foodUserName = foodUserName;
@@ -20,12 +20,12 @@ public class ModelCartItems {
     }
 
 
-    public String getRowid() {
-        return rowid;
+    public String getFoodid() {
+        return foodid;
     }
 
-    public void setRowid(String rowid) {
-        this.rowid = rowid;
+    public void setFoodid(String foodid) {
+        this.foodid = foodid;
     }
 
     public String getFoodPid() {

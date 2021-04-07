@@ -126,7 +126,7 @@
                         android:imeOptions="actionNext"
                         android:ems="13"
                         android:id="@+id/registerShopDiscountNote"
-                        android:drawableLeft="@drawable/ic_baseline_local_offer_24"
+                        android:drawableLeft="@drawable/ic_baseline_local_offer_24new"
                         android:drawablePadding="5dp"
                         android:hint="Discount Note"/>
 

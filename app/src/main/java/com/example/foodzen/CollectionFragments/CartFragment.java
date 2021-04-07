@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,14 +32,17 @@ public class CartFragment extends Fragment {
     public CartFragment() {
         // Required empty public constructor
     }
-    TextView BrowseAllRestaurants;
+
     FirebaseAuth firebaseAuth;
     ArrayList<ModelCartItems>modelCartItemsArrayList;
     RecyclerView cartItemsCollectionRecyclerView;
     AdapterCartItems adapterCartItems;
+    Button ProceedToPayment;
     TextView NetCurrentFinalTotalSumBeforeDeliveryFee;
     TextView NetCurrentFinalTotalSumAfterDeliveryFee;
     TextView RestaurantShopNameShowOnCart;
+    LinearLayout EmptyCartDialog,OrdeToLayout;
+    CardView BillCardLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -45,26 +51,30 @@ public class CartFragment extends Fragment {
         NetCurrentFinalTotalSumAfterDeliveryFee=view.findViewById(R.id.NetCurrentFinalTotalSumAfterDeliveryFee);
         NetCurrentFinalTotalSumBeforeDeliveryFee=view.findViewById(R.id.NetCurrentFinalTotalSumBeforeDeliveryFee);
         RestaurantShopNameShowOnCart=view.findViewById(R.id.RestaurantShopNameShowOnCart);
-        BrowseAllRestaurants=view.findViewById(R.id.BrowseAllRestaurants);
+
+        BillCardLayout=view.findViewById(R.id.BillCardLayout);
+        EmptyCartDialog=view.findViewById(R.id.EmptyCartDialog);
+        OrdeToLayout=view.findViewById(R.id.OrdeToLayout);
+        ProceedToPayment=view.findViewById(R.id.ProceedToPayment);
         cartItemsCollectionRecyclerView=view.findViewById(R.id.cartItemsCollectionRecyclerView);
-        BrowseAllRestaurants.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ;
-            }
-        });
+
+
         showCartItems();
+
         return view;
     }
 
 
     private void showCartItems(){
 
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        String help=firebaseUser.getUid();
+
         modelCartItemsArrayList=new ArrayList<>();
         int sum=0;
-        EasyDB easyDBBest = EasyDB.init(getContext(), "It_124")
+        EasyDB easyDBBestNew = EasyDB.init(getContext(), help)
                 .setTableName("Items")
-                .addColumn(new Column("rowid",new String[]{"text", "unique"}))
+                .addColumn(new Column("foodid",new String[]{"text", "unique"}))
                 .addColumn(new Column("foodPid",new String[]{"text", "not null"}))
                 .addColumn(new Column("foodPName",new String[]{"text", "not null"}))
                 .addColumn(new Column("foodUserName",new String[]{"text", "not null"}))
@@ -74,35 +84,36 @@ public class CartFragment extends Fragment {
                 .addColumn(new Column("foodTotalPrice", new String[]{"text", "not null"}))
                 .doneTableColumn();
 
-        Cursor cursor=easyDBBest.getAllData();
-        while (cursor.moveToNext()){
-            String rowId=cursor.getString(1);
-            String foodPid=cursor.getString(2);
-            String foodPname=cursor.getString(3);
-            String foodUserId=cursor.getString(4);
-            String foodTotaloriprice=cursor.getString(5);
-            String foodQuantity=cursor.getString(6);
-            String foodTotaldiscountprice=cursor.getString(7);
-            String foodtotalPrice=cursor.getString(8);
+        Cursor cursor=easyDBBestNew.getAllData();
+        while (cursor.moveToNext()) {
+                String rid=cursor.getString(1);
+                String foodPid = cursor.getString(2);
+                String foodPname = cursor.getString(3);
+                String foodUserId = cursor.getString(4);
+                String foodTotaloriprice = cursor.getString(5);
+                String foodQuantity = cursor.getString(6);
+                String foodTotaldiscountprice = cursor.getString(7);
+                String foodtotalPrice = cursor.getString(8);
 
-            ModelCartItems modelCartItems=new ModelCartItems(
-                    ""+rowId,
-                    ""+foodPid,
-                    ""+foodPname,
-                    ""+foodUserId,
-                    ""+foodTotaloriprice,
-                    ""+foodQuantity,
-                    ""+foodTotaldiscountprice,
-                    ""+foodtotalPrice
-            );
+                ModelCartItems modelCartItems = new ModelCartItems(
+                        ""+rid,
+                        "" + foodPid,
+                        "" + foodPname,
+                        "" + foodUserId,
+                        "" + foodTotaloriprice,
+                        "" + foodQuantity,
+                        "" + foodTotaldiscountprice,
+                        "" + foodtotalPrice
+                );
 
-            sum=sum+Integer.parseInt(foodTotaldiscountprice);
-            modelCartItemsArrayList.add(modelCartItems);
-        }
-        NetCurrentFinalTotalSumBeforeDeliveryFee.setText(Integer.toString(sum));
-        NetCurrentFinalTotalSumAfterDeliveryFee.setText(Integer.toString(sum+25));
-        adapterCartItems=new AdapterCartItems(getContext(),modelCartItemsArrayList);
-        cartItemsCollectionRecyclerView.setAdapter(adapterCartItems);
+                sum = sum + Integer.parseInt(foodTotaldiscountprice);
+                modelCartItemsArrayList.add(modelCartItems);
+            }
+            NetCurrentFinalTotalSumBeforeDeliveryFee.setText(Integer.toString(sum));
+            NetCurrentFinalTotalSumAfterDeliveryFee.setText(Integer.toString(sum + 25));
+            adapterCartItems = new AdapterCartItems(getContext(), modelCartItemsArrayList);
+            cartItemsCollectionRecyclerView.setAdapter(adapterCartItems);
+
 
     }
 

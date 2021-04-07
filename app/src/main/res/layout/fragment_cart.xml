@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CollectionFragments.CartFragment">
@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
+            android:id="@+id/OrdeToLayout"
             android:orientation="vertical">
 
             <TextView
@@ -50,14 +51,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/cartitemsrows"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
         android:id="@+id/cartItemsCollectionRecyclerView"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"
+        android:id="@+id/BillCardLayout"
         android:layout_height="wrap_content">
 
        <LinearLayout
@@ -168,67 +168,7 @@
     </androidx.cardview.widget.CardView>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/emptycart"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:fontFamily="@font/arvo"
-            android:padding="5dp"
-            android:textStyle="bold"
-            android:text="Good Food Is Always Cooking"
-            android:textColor="#199F79"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/signika_semibold"
-            android:text="Your cart is empty" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:fontFamily="@font/signika_semibold"
-            android:text="Add something from the menu" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#199F79"
-            android:textAlignment="center"
-            android:layout_margin="10dp"
-            android:textStyle="bold"
-            android:textSize="19dp"
-            android:id="@+id/BrowseAllRestaurants"
-            android:padding="13dp"
-            android:fontFamily="@font/arvo"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/browserestaurantbutton"
-            android:text="Browse Restaurants"/>
-
-    </LinearLayout>
 
     <Button
             android:layout_width="match_parent"
@@ -238,6 +178,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
+            android:id="@+id/ProceedToPayment"
             android:textSize="23dp"
             android:fontFamily="@font/assistant_semibold"
             android:background="@drawable/loginbuttonbackgroung"
