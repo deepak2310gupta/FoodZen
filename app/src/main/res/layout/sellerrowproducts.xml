@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:id="@+id/FoodImageRestaurantLayoutNew">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    app:cardCornerRadius="14dp">
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:scaleType="fitXY"
+                        android:id="@+id/FoodImageNewOne"
+                        android:layout_height="110dp"
+                        android:src="@drawable/dosa">
+
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/FoodImageRestaurantLayoutNew"
+                android:padding="3dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp">
+
+                <ImageView
+                    android:id="@+id/itemTypeImageIconNew"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/vegpic" />
+
+                <TextView
+                    android:id="@+id/FoodItemNameNewOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/itemTypeImageIconNew"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="40dp"
+                    android:fontFamily="@font/gudea"
+                    android:text="Tandoori Chaap"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/FoodItemOriginalPriceNewOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/FoodItemNameNewOne"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/gudea"
+                    android:text="Rs 100"
+                    android:textStyle="bold"
+                    android:textColor="#EF2323"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/FoodItemDiscountedPriceNewOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/FoodItemNameNewOne"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_toEndOf="@id/FoodItemOriginalPriceNewOne"
+                    android:fontFamily="@font/gudea"
+                    android:text="Rs 50"
+                    android:textStyle="bold"
+                    android:textColor="#27CC2A"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/FoodItemDescriptionNewOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/FoodItemOriginalPriceNewOne"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/gudea"
+                    android:maxLines="3"
+                    android:textStyle="bold"
+                    android:ems="4"
+                    android:text="Description In Maximum 2 Lines Description In Maximum 2 Lines"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/DeleteProductLayout"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/FoodImageRestaurantLayoutNew"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/discountnotebackground"
+                android:padding="2dp"
+                tools:ignore="NotSibling">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/coiny"
+                    android:text="Delete"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

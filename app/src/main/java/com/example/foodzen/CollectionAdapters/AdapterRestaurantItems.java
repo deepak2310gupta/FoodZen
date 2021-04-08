@@ -184,6 +184,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
             @Override
             public void onClick(View v) {
                 AddtoUserFavouriteList(modelAddProducts);
+                bottomSheetDialog.dismiss();
             }
         });
     }
@@ -213,6 +214,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(context, "Added To Favourites List", Toast.LENGTH_SHORT).show();
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

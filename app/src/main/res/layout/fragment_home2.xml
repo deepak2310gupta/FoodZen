@@ -21,17 +21,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
         android:id="@+id/txtandThumbLayout"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:id="@+id/ThumbsUpImage"
             android:layout_margin="5dp"
             android:src="@drawable/thumbsup"
             android:layout_gravity="center_vertical"
-            android:layout_height="30dp"/>
+            android:layout_height="25dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,28 +53,29 @@
         android:layout_below="@id/txtandThumbLayout"
         android:layout_marginLeft="5dp"
         tools:listitem="@layout/toppicks_layout"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
         android:id="@+id/TopPicksRecyclerView"/>
     <androidx.cardview.widget.CardView
        android:layout_width="match_parent"
        android:layout_height="200dp"
-       android:layout_marginLeft="10dp"
+       android:layout_marginLeft="7dp"
         android:layout_marginTop="5dp"
        android:layout_below="@id/TopPicksRecyclerView"
        android:layout_marginBottom="10dp"
        app:cardCornerRadius="10dp"
        android:id="@+id/slidingImagesLayout"
-       android:layout_marginRight="10dp">
+       android:layout_marginRight="7dp">
 
        <com.denzcoskun.imageslider.ImageSlider
            android:layout_width="match_parent"
            android:layout_height="200dp"
            android:layout_below="@id/TopPicksRecyclerView"
-           app:period="2000"
+           app:period="1500"
            app:delay="0"
            app:auto_cycle="true"
+           app:placeholder="@color/white"
            android:id="@+id/image_slider" />
    </androidx.cardview.widget.CardView>
     <TextView
