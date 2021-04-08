@@ -9,20 +9,15 @@
     tools:context=".CollectionActivities.SplashActivity">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:elevation="25dp"
-        android:id="@+id/cardSplash"
-        app:cardCornerRadius="10dp">
         <ImageView
-            android:layout_width="270dp"
-            android:layout_height="270dp"
+            android:layout_width="290dp"
+            android:layout_height="290dp"
+            android:id="@+id/cardSplash"
+            android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/myfoodzen"/>
 
-    </androidx.cardview.widget.CardView>
+
 
 
 
