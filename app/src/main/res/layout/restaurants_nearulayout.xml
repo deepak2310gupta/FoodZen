@@ -6,6 +6,16 @@
     android:layout_margin="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shimmerFrameLayout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:id="@+id/restaurantsImageLayout"
@@ -18,24 +28,24 @@
             <ImageView
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@drawable/dosa"
+                android:background="@color/colorShimmer"
                 android:id="@+id/RestaurantImage"
                 android:scaleType="fitXY"/>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="98dp"
         android:layout_height="wrap_content"
         android:padding="3dp"
+        android:id="@+id/helpNoteDiscount"
         android:layout_marginTop="-13dp"
         android:layout_marginLeft="5dp"
         android:layout_below="@id/restaurantsImageLayout"
-        android:background="@drawable/shopdiscountbackground">
+        android:background="@null">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30% OFF"
+            android:text=""
             android:id="@+id/RestaurantDiscountNote"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/arvo"
@@ -44,7 +54,6 @@
             android:textColor="@color/white"
             android:textStyle="bold"/>
     </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,20 +62,20 @@
         android:layout_toEndOf="@id/restaurantsImageLayout">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:fontFamily="@font/merriweather"
             android:id="@+id/RestaurantName"
-            android:text="Dosa King"
+            android:background="@color/colorShimmer"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fast Food,South Indian,Chinese"
             android:layout_margin="2dp"
+            android:background="@color/colorShimmer"
             android:textColor="@color/black"
             android:id="@+id/RestaurantCategory"
             android:fontFamily="@font/merriweather"
@@ -74,11 +83,11 @@
 
         <TextView
             android:id="@+id/RestaurantAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:fontFamily="@font/merriweather"
-            android:text="Bara Hazari"
+            android:background="@color/colorShimmer"
             android:textColor="@color/black"
             android:textSize="14dp" />
 
@@ -92,6 +101,8 @@
             android:layout_margin="2dp"/>
 
     </LinearLayout>
+    </RelativeLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,17 @@ public class FavouritesFragment extends Fragment {
         LikedFoodsRecyclerView=view.findViewById(R.id.LikedFoodsRecyclerView);
         adapterLikedFood=new AdapterLikedFood(getContext(),modelLikedFoodsArrayList);
         LikedFoodsRecyclerView.setAdapter(adapterLikedFood);
-        Query query= FirebaseDatabase.getInstance().getReference("TotalLikedFoods").orderByChild("likedfooduserid").equalTo(firebaseAuth.getUid());
-        query.addListenerForSingleValueEvent(valueEventListener);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Query query= FirebaseDatabase.getInstance().getReference("TotalLikedFoods").orderByChild("likedfooduserid").equalTo(firebaseAuth.getUid());
+                query.addListenerForSingleValueEvent(valueEventListener);
+                adapterLikedFood.isLikedShimmer=false;
+            }
+        },1900);
+
+
         return view;
     }
 

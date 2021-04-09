@@ -1,6 +1,7 @@
 package com.example.foodzen.CollectionFragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.example.foodzen.CollectionAdapters.AdapterTopPicks;
 import com.example.foodzen.CollectionModels.ModelSeller;
 import com.example.foodzen.CollectionModels.ModelTopPicks;
 import com.example.foodzen.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +38,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class HomeFragment extends Fragment {
@@ -73,6 +78,7 @@ public class HomeFragment extends Fragment {
         List<SlideModel> imageListCollection=new ArrayList<>();
 
         adapterRestaurants=new AdapterRestaurants(getContext(),modelSellerList);
+
         RestaurantsRecylerView.setAdapter(adapterRestaurants);
 
         adapterTopPicks=new AdapterTopPicks(getContext(),modelTopPicksArrayList);
@@ -85,57 +91,78 @@ public class HomeFragment extends Fragment {
 
         imageSlider.setImageList(imageListCollection,false);
 
-        Query query= FirebaseDatabase.getInstance().getReference("TotalAppUsers").orderByChild("usertype").equalTo("RestaurantSeller");
-        query.addListenerForSingleValueEvent(valueEventListener);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Query query= FirebaseDatabase.getInstance().getReference("TotalAppUsers").orderByChild("usertype").equalTo("RestaurantSeller");
+                query.addListenerForSingleValueEvent(valueEventListener);
+                adapterRestaurants.isShimmer=false;
+            }
+        },2200);
+
+
 
         showTopPicksDialogAccordingToUser();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Query dbReferebnce= FirebaseDatabase.getInstance().getReference("CollectionTopPicks").child(firebaseAuth.getUid()).orderByChild("topPickuserid").equalTo(firebaseAuth.getUid());
+                dbReferebnce.addListenerForSingleValueEvent(valueEventListenerTopPicks);
+                adapterTopPicks.isShimmerNew=false;
+            }
+        },2200);
 
-        Query dbReferebnce= FirebaseDatabase.getInstance().getReference("CollectionTopPicks").child(firebaseAuth.getUid()).orderByChild("topPickuserid").equalTo(firebaseAuth.getUid());
-        dbReferebnce.addListenerForSingleValueEvent(valueEventListenerTopPicks);
 
         return  view;
     }
 
     private void showTopPicksDialogAccordingToUser(){
 
-        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
-        ArrayList<String>listRestaurant=new ArrayList<>();
-        listRestaurant.add("Fmdu06Lrb0gNBn9kearMHWKnysB3");
-        listRestaurant.add("cz7ylb8KvHNp0jYiT0ykWPmNsE83");
-        listRestaurant.add("tCSZ8GFBXPRkdixDcajmLPD7KTr1");
-        for(int i=0;i<listRestaurant.size();i++){
+        if(helpingforTopPickslayout()) {
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            ArrayList<String> listRestaurant = new ArrayList<>();
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.toppickslayoutprefer, null);
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+            bottomSheetDialog.setContentView(view);
+            bottomSheetDialog.show();
+            listRestaurant.add("Fmdu06Lrb0gNBn9kearMHWKnysB3");
+            listRestaurant.add("cz7ylb8KvHNp0jYiT0ykWPmNsE83");
+            listRestaurant.add("tCSZ8GFBXPRkdixDcajmLPD7KTr1");
+            for (int i = 0; i < listRestaurant.size(); i++) {
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
+                databaseReference.orderByChild("uid").equalTo(listRestaurant.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
 
-            DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-            databaseReference.orderByChild("uid").equalTo(listRestaurant.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot ds:snapshot.getChildren()){
+                            String one = "" + ds.child("uid").getValue();
+                            String two = "" + ds.child("name").getValue();
+                            String three = "" + ds.child("discountnote").getValue();
+                            String four = "" + ds.child("category").getValue();
+                            DatabaseReference databaseReferencePicks = FirebaseDatabase.getInstance().getReference("CollectionTopPicks");
+                            HashMap<String, Object> hashMapTopPicks = new HashMap<>();
+                            String timeVal = String.valueOf(System.currentTimeMillis());
+                            hashMapTopPicks.put("shopId", one);
+                            hashMapTopPicks.put("shopName", two);
+                            hashMapTopPicks.put("shopDiscountNoteOff", three);
+                            hashMapTopPicks.put("shopCategorytype", four);
+                            hashMapTopPicks.put("topPickid", timeVal);
+                            hashMapTopPicks.put("topPickuserid", firebaseAuth.getUid());
+                            databaseReferencePicks.child(firebaseUser.getUid()).child(timeVal).setValue(hashMapTopPicks);
 
-                        String one=""+ds.child("uid").getValue();
-                        String two=""+ds.child("name").getValue();
-                        String three=""+ds.child("discountnote").getValue();
-                        String four=""+ds.child("category").getValue();
-                        DatabaseReference databaseReferencePicks=FirebaseDatabase.getInstance().getReference("CollectionTopPicks");
-                        HashMap<String,Object>hashMapTopPicks=new HashMap<>();
-                        String timeVal= String.valueOf(System.currentTimeMillis());
-                        hashMapTopPicks.put("shopId",one);
-                        hashMapTopPicks.put("shopName",two);
-                        hashMapTopPicks.put("shopDiscountNoteOff",three);
-                        hashMapTopPicks.put("shopCategorytype",four);
-                        hashMapTopPicks.put("topPickid",timeVal);
-                        hashMapTopPicks.put("topPickuserid",firebaseAuth.getUid());
-                        databaseReferencePicks.child(firebaseUser.getUid()).child(timeVal).setValue(hashMapTopPicks);
-
+                        }
                     }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
-
+        else{
+            return;
+        }
 
 
     }
@@ -158,8 +185,6 @@ public class HomeFragment extends Fragment {
             Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
-
-
     ValueEventListener valueEventListenerTopPicks=new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -177,6 +202,23 @@ public class HomeFragment extends Fragment {
             Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
+
+    private boolean helpingforTopPickslayout(){
+
+        SharedPreferences sharedPreferences=getContext().getSharedPreferences("prefs",MODE_PRIVATE);
+        boolean firstStart=sharedPreferences.getBoolean("firstStart",true);
+
+        if(firstStart==true){
+
+            SharedPreferences preferences=getContext().getSharedPreferences("prefs",MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putBoolean("firstStart",false);
+            editor.apply();
+            return true;
+        }
+
+        return firstStart;
+    }
 
 
 }

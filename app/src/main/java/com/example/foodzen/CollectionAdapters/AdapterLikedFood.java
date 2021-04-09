@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodzen.CollectionModels.ModelLikedFoods;
 import com.example.foodzen.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,10 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
 
     Context context;
     ArrayList<ModelLikedFoods>modelLikedFoodsArrayList;
+
+    public boolean isLikedShimmer=true;
+    public int likedShimmerNum=6;
+
 
     public AdapterLikedFood(Context context, ArrayList<ModelLikedFoods> modelLikedFoodsArrayList) {
         this.context = context;
@@ -37,33 +42,48 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
     @Override
     public void onBindViewHolder(@NonNull LikeFoodHolder holder, int position) {
 
-        ModelLikedFoods modelLikedFoods=modelLikedFoodsArrayList.get(position);
-        String one=modelLikedFoods.getLikedfoodname();
-        String two=modelLikedFoods.getLikedfoodshopname();
-        String three=modelLikedFoods.getLikedfoodoriprice();
-        String four=modelLikedFoods.getLikedfooddiscountprice();
-        String five=modelLikedFoods.getLikedfooddiscountnote();
+        if(isLikedShimmer){
+            holder.shimmerlikedlayout.startShimmer();
+        }
+        else {
+            holder.shimmerlikedlayout.stopShimmer();
+            holder.shimmerlikedlayout.setShimmer(null);
+            ModelLikedFoods modelLikedFoods = modelLikedFoodsArrayList.get(position);
+            String one = modelLikedFoods.getLikedfoodname();
+            String two = modelLikedFoods.getLikedfoodshopname();
+            String three = modelLikedFoods.getLikedfoodoriprice();
+            String four = modelLikedFoods.getLikedfooddiscountprice();
+            String five = modelLikedFoods.getLikedfooddiscountnote();
+            holder.foodLikedName.setBackground(null);
+            holder.foodLikedShopname.setBackground(null);
+            holder.likedoriPrice.setBackground(null);
+            holder.likeddiscprice.setBackground(null);
+            holder.imageLiked.setImageResource(R.drawable.pizzahut);
+            holder.foodLikedName.setText(one);
+            holder.foodLikedShopname.setText(two);
+            holder.likedoriPrice.setText(three);
+            holder.likeddiscprice.setText(four);
 
-        holder.foodLikedName.setText(one);
-        holder.foodLikedShopname.setText(two);
-        holder.likedoriPrice.setText(three);
-        holder.likeddiscprice.setText(four);
-
-        holder.likedoriPrice.setPaintFlags( holder.likedoriPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        holder.likedDiscountNote.setText(five);
+            holder.likedoriPrice.setPaintFlags(holder.likedoriPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.likedDiscountNote.setText(five);
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return modelLikedFoodsArrayList.size();
+
+        return isLikedShimmer?likedShimmerNum:modelLikedFoodsArrayList.size();
     }
 
     public class LikeFoodHolder extends RecyclerView.ViewHolder {
+
         ImageView imageLiked;
+        ShimmerFrameLayout shimmerlikedlayout;
         TextView likeddiscprice,likedoriPrice,foodLikedShopname,foodLikedName,likedDiscountNote;
         public LikeFoodHolder(@NonNull View itemView) {
             super(itemView);
+            shimmerlikedlayout=itemView.findViewById(R.id.shimmerlikedlayout);
             imageLiked=itemView.findViewById(R.id.imageLiked);
             likeddiscprice=itemView.findViewById(R.id.likeddiscprice);
             likedoriPrice=itemView.findViewById(R.id.likedoriPrice);
