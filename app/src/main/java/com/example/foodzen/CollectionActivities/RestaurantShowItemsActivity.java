@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -38,10 +39,10 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
     private ArrayList<ModelPromoCodes> modelPromoCodesArrayList;
     private RecyclerView PromoCodesRecyclerViewCollections;
     private String shopId;
-    private TextView ShopNameTv,ShopCategoryTv,ShopAddresstv;
-    private String shopName,shopAddress,shopCategory;
+    private TextView ShopNameTv, ShopCategoryTv, ShopAddresstv;
+    private String shopName, shopAddress, shopCategory;
     ImageButton BackToListRestaurants;
-    private ArrayList<String>ListCategory;
+    private ArrayList<String> ListCategory;
     LinearLayout fssaiAndLicenseLogo;
 
     @Override
@@ -49,21 +50,29 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_show_items);
         initViews();
-        shopId=getIntent().getStringExtra("ResShopId");
-        shopName=getIntent().getStringExtra("ResShopName");
-        shopAddress=getIntent().getStringExtra("ResShopAddress");
-        shopCategory=getIntent().getStringExtra("ResCategory");
-        ListCategory=new ArrayList<>();
+        shopId = getIntent().getStringExtra("ResShopId");
+        shopName = getIntent().getStringExtra("ResShopName");
+        shopAddress = getIntent().getStringExtra("ResShopAddress");
+        shopCategory = getIntent().getStringExtra("ResCategory");
+        ListCategory = new ArrayList<>();
         ShopNameTv.setText(shopName);
         ShopCategoryTv.setText(shopCategory);
         ShopAddresstv.setText(shopAddress);
-        adapterRestaurantItems=new AdapterRestaurantItems(RestaurantShowItemsActivity.this,modelFoodItemArrayList);
-        adapterPromoCodes=new AdapterPromoCodes(RestaurantShowItemsActivity.this,modelPromoCodesArrayList);
+        adapterRestaurantItems = new AdapterRestaurantItems(RestaurantShowItemsActivity.this, modelFoodItemArrayList);
+        adapterPromoCodes = new AdapterPromoCodes(RestaurantShowItemsActivity.this, modelPromoCodesArrayList);
         RestaurantShowItemsRecyclerView.setAdapter(adapterRestaurantItems);
         PromoCodesRecyclerViewCollections.setAdapter(adapterPromoCodes);
-        Query query= FirebaseDatabase.getInstance().getReference("TotalProductsSeller").orderByChild("productUserId").equalTo(shopId);
-        query.addListenerForSingleValueEvent(valueEventListener);
-        Query query1=FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(shopId);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Query query = FirebaseDatabase.getInstance().getReference("TotalProductsSeller").orderByChild("productUserId").equalTo(shopId);
+                query.addListenerForSingleValueEvent(valueEventListener);
+                adapterRestaurantItems.isShimmerItems = false;
+            }
+        }, 2200);
+
+        Query query1 = FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(shopId);
         query1.addListenerForSingleValueEvent(valueEventListenerNew);
         FetchTopPicksAccordingToUser();
         BackToListRestaurants.setOnClickListener(new View.OnClickListener() {
@@ -75,79 +84,82 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
 
     }
 
-    private void FetchTopPicksAccordingToUser(){
+    private void FetchTopPicksAccordingToUser() {
 
-        for(int i=0;i<ListCategory.size();i++){
+        for (int i = 0; i < ListCategory.size(); i++) {
 
-            Query query2= FirebaseDatabase.getInstance().getReference("TopPicksCollection").orderByChild("categoryRestaurant").equalTo(ListCategory.get(i));
+            Query query2 = FirebaseDatabase.getInstance().getReference("TopPicksCollection").orderByChild("categoryRestaurant").equalTo(ListCategory.get(i));
             query2.addListenerForSingleValueEvent(valueEventListenerOne);
         }
     }
 
     private void initViews() {
 
-        ShopNameTv=findViewById(R.id.ShopNameTv);
-        ShopCategoryTv=findViewById(R.id.ShopCategoryTv);
-        ShopAddresstv=findViewById(R.id.ShopAddresstv);
-        RestaurantShowItemsRecyclerView=findViewById(R.id.RestaurantShowItemsRecyclerView);
-        PromoCodesRecyclerViewCollections=findViewById(R.id.PromoCodesRecyclerViewCollections);
-        BackToListRestaurants=findViewById(R.id.BackToListRestaurants);
-        modelFoodItemArrayList=new ArrayList<>();
-        modelPromoCodesArrayList=new ArrayList<>();
-        fssaiAndLicenseLogo=findViewById(R.id.fssaiAndLicenseLogo);
+        ShopNameTv = findViewById(R.id.ShopNameTv);
+        ShopCategoryTv = findViewById(R.id.ShopCategoryTv);
+        ShopAddresstv = findViewById(R.id.ShopAddresstv);
+        RestaurantShowItemsRecyclerView = findViewById(R.id.RestaurantShowItemsRecyclerView);
+        PromoCodesRecyclerViewCollections = findViewById(R.id.PromoCodesRecyclerViewCollections);
+        BackToListRestaurants = findViewById(R.id.BackToListRestaurants);
+        modelFoodItemArrayList = new ArrayList<>();
+        modelPromoCodesArrayList = new ArrayList<>();
+        fssaiAndLicenseLogo = findViewById(R.id.fssaiAndLicenseLogo);
     }
 
-    ValueEventListener valueEventListener=new ValueEventListener() {
+    ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             modelFoodItemArrayList.clear();
-            if(datasnapshot.exists()){
-                for(DataSnapshot snapshot:datasnapshot.getChildren()){
-                    ModelAddProducts modelAddProducts=snapshot.getValue(ModelAddProducts.class);
+            if (datasnapshot.exists()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    ModelAddProducts modelAddProducts = snapshot.getValue(ModelAddProducts.class);
                     modelFoodItemArrayList.add(modelAddProducts);
                 }
                 adapterRestaurantItems.notifyDataSetChanged();
                 fssaiAndLicenseLogo.setVisibility(View.VISIBLE);
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(RestaurantShowItemsActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
-    ValueEventListener valueEventListenerNew=new ValueEventListener() {
+    ValueEventListener valueEventListenerNew = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             modelPromoCodesArrayList.clear();
-            if(datasnapshot.exists()){
-                for(DataSnapshot snapshot:datasnapshot.getChildren()){
-                    ModelPromoCodes modelPromoCodes=snapshot.getValue(ModelPromoCodes.class);
+            if (datasnapshot.exists()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    ModelPromoCodes modelPromoCodes = snapshot.getValue(ModelPromoCodes.class);
                     modelPromoCodesArrayList.add(modelPromoCodes);
                 }
                 adapterPromoCodes.notifyDataSetChanged();
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(RestaurantShowItemsActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
-    ValueEventListener valueEventListenerOne=new ValueEventListener() {
+    ValueEventListener valueEventListenerOne = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             modelFoodItemArrayList.clear();
-            if(datasnapshot.exists()){
-                for(DataSnapshot snapshot:datasnapshot.getChildren()){
-                    ModelAddProducts modelAddProducts=snapshot.getValue(ModelAddProducts.class);
+            if (datasnapshot.exists()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    ModelAddProducts modelAddProducts = snapshot.getValue(ModelAddProducts.class);
                     modelFoodItemArrayList.add(modelAddProducts);
                 }
                 adapterRestaurantItems.notifyDataSetChanged();
                 fssaiAndLicenseLogo.setVisibility(View.VISIBLE);
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(RestaurantShowItemsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(RestaurantShowItemsActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
 }

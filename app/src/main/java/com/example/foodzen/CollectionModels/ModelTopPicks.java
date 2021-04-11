@@ -3,7 +3,7 @@ package com.example.foodzen.CollectionModels;
 public class ModelTopPicks {
 
 
-   private String shopId,shopName,shopDiscountNoteOff,shopCategorytype,topPickid,topPickuserid;
+    private String shopId, shopName, shopDiscountNoteOff, shopCategorytype, topPickid, topPickuserid;
 
 
     public ModelTopPicks() {

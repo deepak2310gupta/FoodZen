@@ -3,7 +3,7 @@ package com.example.foodzen.CollectionModels;
 public class ModelCartItems {
 
 
-    private String foodid,foodPid,foodPName,foodUserName,foodTotalOriginalPrice,foodQuantity,foodTotalDiscountedPrice,foodTotalPrice;
+    private String foodid, foodPid, foodPName, foodUserName, foodTotalOriginalPrice, foodQuantity, foodTotalDiscountedPrice, foodTotalPrice;
 
     public ModelCartItems() {
     }

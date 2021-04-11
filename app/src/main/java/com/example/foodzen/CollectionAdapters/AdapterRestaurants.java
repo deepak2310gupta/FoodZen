@@ -19,13 +19,13 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
-public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.RestaurantsViewHolder>{
+public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.RestaurantsViewHolder> {
 
     Context context;
-    ArrayList<ModelSeller>modelSellerArrayList;
+    ArrayList<ModelSeller> modelSellerArrayList;
 
-    public boolean isShimmer=true;
-    public int shimmerNumber=5;
+    public boolean isShimmer = true;
+    public int shimmerNumber = 5;
 
     public AdapterRestaurants(Context context, ArrayList<ModelSeller> modelSellerArrayList) {
         this.context = context;
@@ -35,17 +35,16 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
     @NonNull
     @Override
     public RestaurantsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.restaurants_nearulayout,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.restaurants_nearulayout, parent, false);
         return new RestaurantsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantsViewHolder holder, int position) {
 
-        if(isShimmer) {
-          holder.shimmerFrameLayout.startShimmer();
-            }
-        else{
+        if (isShimmer) {
+            holder.shimmerFrameLayout.startShimmer();
+        } else {
 
             holder.shimmerFrameLayout.stopShimmer();
             holder.shimmerFrameLayout.setShimmer(null);
@@ -85,23 +84,24 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
     @Override
     public int getItemCount() {
 
-        return isShimmer?shimmerNumber:modelSellerArrayList.size();
+        return isShimmer ? shimmerNumber : modelSellerArrayList.size();
     }
 
     public class RestaurantsViewHolder extends RecyclerView.ViewHolder {
         ShimmerFrameLayout shimmerFrameLayout;
         ImageView RestaurantImage;
         RelativeLayout helpNoteDiscount;
-        TextView RestaurantName,RestaurantAddress,RestaurantCategory,RestaurantDiscountNote;
+        TextView RestaurantName, RestaurantAddress, RestaurantCategory, RestaurantDiscountNote;
+
         public RestaurantsViewHolder(@NonNull View itemView) {
             super(itemView);
-            shimmerFrameLayout=itemView.findViewById(R.id.shimmerFrameLayout);
-            helpNoteDiscount=itemView.findViewById(R.id.helpNoteDiscount);
-            RestaurantImage=itemView.findViewById(R.id.RestaurantImage);
-            RestaurantName=itemView.findViewById(R.id.RestaurantName);
-            RestaurantAddress=itemView.findViewById(R.id.RestaurantAddress);
-            RestaurantCategory=itemView.findViewById(R.id.RestaurantCategory);
-            RestaurantDiscountNote=itemView.findViewById(R.id.RestaurantDiscountNote);
+            shimmerFrameLayout = itemView.findViewById(R.id.shimmerFrameLayout);
+            helpNoteDiscount = itemView.findViewById(R.id.helpNoteDiscount);
+            RestaurantImage = itemView.findViewById(R.id.RestaurantImage);
+            RestaurantName = itemView.findViewById(R.id.RestaurantName);
+            RestaurantAddress = itemView.findViewById(R.id.RestaurantAddress);
+            RestaurantCategory = itemView.findViewById(R.id.RestaurantCategory);
+            RestaurantDiscountNote = itemView.findViewById(R.id.RestaurantDiscountNote);
         }
     }
 

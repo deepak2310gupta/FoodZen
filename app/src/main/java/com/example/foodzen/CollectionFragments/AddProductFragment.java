@@ -26,39 +26,39 @@ import java.util.HashMap;
 public class AddProductFragment extends Fragment {
 
 
-
     Button addProductButtonDetails;
     FirebaseAuth firebaseAuth;
     LinearProgressIndicator addProductLinearIndicator;
-    EditText addProductName,addProductDescription,addproductOriginalPrice,addProductItemType,addProductDiscountedPrice,addProductDiscountedNote;
-    public AddProductFragment() {}
+    EditText addProductName, addProductDescription, addproductOriginalPrice, addProductItemType, addProductDiscountedPrice, addProductDiscountedNote;
 
+    public AddProductFragment() {
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View viewNewest= inflater.inflate(R.layout.fragment_add_product, container, false);
-        firebaseAuth=FirebaseAuth.getInstance();
-        addProductButtonDetails=viewNewest.findViewById(R.id.addProductButtonDetailsNew);
-        addProductName=viewNewest.findViewById(R.id.addProductNameNew);
-        addProductDescription=viewNewest.findViewById(R.id.addProductDescriptionNew);
-        addproductOriginalPrice=viewNewest.findViewById(R.id.addproductOriginalPriceNew);
-        addProductItemType=viewNewest.findViewById(R.id.addProductItemTypeNew);
-        addProductDiscountedPrice=viewNewest.findViewById(R.id.addProductDiscountedPriceNew);
-        addProductDiscountedNote=viewNewest.findViewById(R.id.addProductDiscountedNoteNew);
-        addProductLinearIndicator=viewNewest.findViewById(R.id.addProductLinearIndicatorNew);
-       // initViews(viewNewest);
+        View viewNewest = inflater.inflate(R.layout.fragment_add_product, container, false);
+        firebaseAuth = FirebaseAuth.getInstance();
+        addProductButtonDetails = viewNewest.findViewById(R.id.addProductButtonDetailsNew);
+        addProductName = viewNewest.findViewById(R.id.addProductNameNew);
+        addProductDescription = viewNewest.findViewById(R.id.addProductDescriptionNew);
+        addproductOriginalPrice = viewNewest.findViewById(R.id.addproductOriginalPriceNew);
+        addProductItemType = viewNewest.findViewById(R.id.addProductItemTypeNew);
+        addProductDiscountedPrice = viewNewest.findViewById(R.id.addProductDiscountedPriceNew);
+        addProductDiscountedNote = viewNewest.findViewById(R.id.addProductDiscountedNoteNew);
+        addProductLinearIndicator = viewNewest.findViewById(R.id.addProductLinearIndicatorNew);
+        // initViews(viewNewest);
 
         addProductButtonDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txtproductName=addProductName.getText().toString();
-                String txtproductDesc=addProductDescription.getText().toString();
-                String txtOriginalPrice=addproductOriginalPrice.getText().toString();
-                String  txtDiscountPrice=addProductDiscountedPrice.getText().toString();
-                String txtDiscountNote=addProductDiscountedNote.getText().toString();
-                String txtItemType=addProductItemType.getText().toString();
-                addProductDetails(txtproductName,txtproductDesc,txtOriginalPrice,txtDiscountNote,txtDiscountPrice,txtItemType);
+                String txtproductName = addProductName.getText().toString();
+                String txtproductDesc = addProductDescription.getText().toString();
+                String txtOriginalPrice = addproductOriginalPrice.getText().toString();
+                String txtDiscountPrice = addProductDiscountedPrice.getText().toString();
+                String txtDiscountNote = addProductDiscountedNote.getText().toString();
+                String txtItemType = addProductItemType.getText().toString();
+                addProductDetails(txtproductName, txtproductDesc, txtOriginalPrice, txtDiscountNote, txtDiscountPrice, txtItemType);
             }
         });
         return viewNewest;
@@ -70,23 +70,21 @@ public class AddProductFragment extends Fragment {
         addProductLinearIndicator.setVisibility(View.VISIBLE);
         String timeValueStamp = String.valueOf(System.currentTimeMillis());
 
-        if(TextUtils.isEmpty(txtproductName)|| TextUtils.isEmpty(txtproductDesc)|| TextUtils.isEmpty(txtOriginalPrice)|| TextUtils.isEmpty(txtDiscountNote) || TextUtils.isEmpty(txtDiscountPrice)|| TextUtils.isEmpty(txtItemType)){
+        if (TextUtils.isEmpty(txtproductName) || TextUtils.isEmpty(txtproductDesc) || TextUtils.isEmpty(txtOriginalPrice) || TextUtils.isEmpty(txtDiscountNote) || TextUtils.isEmpty(txtDiscountPrice) || TextUtils.isEmpty(txtItemType)) {
             addProductLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Plesae Fill All The Information Related To Products", Toast.LENGTH_SHORT).show();
             return;
-        }
-
-        else {
-            FirebaseUser user=firebaseAuth.getCurrentUser();
-            HashMap<String,Object>hashMap=new HashMap<>();
-            hashMap.put("pId","" + timeValueStamp);
-            hashMap.put("pName","" + txtproductName);
-            hashMap.put("pDesc","" + txtproductDesc);
-            hashMap.put("oriPrice","" + txtOriginalPrice);
-            hashMap.put("itemType","" + txtItemType);
-            hashMap.put("discountPrice","" + txtDiscountPrice);
-            hashMap.put("discontNote","" + txtDiscountNote);
-            hashMap.put("productUserId",""+user.getUid());
+        } else {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("pId", "" + timeValueStamp);
+            hashMap.put("pName", "" + txtproductName);
+            hashMap.put("pDesc", "" + txtproductDesc);
+            hashMap.put("oriPrice", "" + txtOriginalPrice);
+            hashMap.put("itemType", "" + txtItemType);
+            hashMap.put("discountPrice", "" + txtDiscountPrice);
+            hashMap.put("discontNote", "" + txtDiscountNote);
+            hashMap.put("productUserId", "" + user.getUid());
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalProductsSeller");
             databaseReference.child(timeValueStamp).setValue(hashMap);
             addProductLinearIndicator.setVisibility(View.GONE);
@@ -98,7 +96,7 @@ public class AddProductFragment extends Fragment {
 
     }
 
-    private void EmptyAllEditTexts(){
+    private void EmptyAllEditTexts() {
         addProductName.setText("");
         addProductDescription.setText("");
         addproductOriginalPrice.setText("");
@@ -107,7 +105,6 @@ public class AddProductFragment extends Fragment {
         addProductItemType.setText("");
         return;
     }
-
 
 
 }

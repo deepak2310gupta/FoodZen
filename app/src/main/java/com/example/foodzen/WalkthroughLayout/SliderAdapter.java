@@ -18,8 +18,7 @@ public class SliderAdapter extends PagerAdapter {
     Context context;
     LayoutInflater layoutInflater;
 
-    public SliderAdapter(Context context)
-    {
+    public SliderAdapter(Context context) {
         this.context = context;
     }
 
@@ -48,7 +47,7 @@ public class SliderAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == (RelativeLayout)object;
+        return view == (RelativeLayout) object;
     }
 
     @NonNull

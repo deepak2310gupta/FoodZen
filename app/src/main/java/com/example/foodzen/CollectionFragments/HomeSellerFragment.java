@@ -31,81 +31,82 @@ import java.util.ArrayList;
 public class HomeSellerFragment extends Fragment {
 
 
+    RecyclerView SellerPromCodesRecyclerView, TotalProductsRecyclerView;
 
-    RecyclerView SellerPromCodesRecyclerView,TotalProductsRecyclerView;
     public HomeSellerFragment() {
         // Required empty public constructor
     }
+
     FirebaseAuth firebaseAuth;
     AdapterSellerProducts adapterSellerProducts;
-    ArrayList<ModelAddProducts>modelAddProductsArrayList;
-    ArrayList<ModelPromoCodes>modelPromoCodesArrayList;
+    ArrayList<ModelAddProducts> modelAddProductsArrayList;
+    ArrayList<ModelPromoCodes> modelPromoCodesArrayList;
     AdapterPromoCodes adapterPromoCodes;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.fragment_home_seller, container, false);
-        firebaseAuth=FirebaseAuth.getInstance();
+        View view = inflater.inflate(R.layout.fragment_home_seller, container, false);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        SellerPromCodesRecyclerView=view.findViewById(R.id.SellerPromCodesRecyclerView);
-        TotalProductsRecyclerView=view.findViewById(R.id.TotalProductsRecyclerView);
+        SellerPromCodesRecyclerView = view.findViewById(R.id.SellerPromCodesRecyclerView);
+        TotalProductsRecyclerView = view.findViewById(R.id.TotalProductsRecyclerView);
 
-        modelAddProductsArrayList=new ArrayList<>();
-        modelPromoCodesArrayList=new ArrayList<>();
+        modelAddProductsArrayList = new ArrayList<>();
+        modelPromoCodesArrayList = new ArrayList<>();
 
-        adapterSellerProducts=new AdapterSellerProducts(getContext(),modelAddProductsArrayList);
-        adapterPromoCodes=new AdapterPromoCodes(getContext(),modelPromoCodesArrayList);
+        adapterSellerProducts = new AdapterSellerProducts(getContext(), modelAddProductsArrayList);
+        adapterPromoCodes = new AdapterPromoCodes(getContext(), modelPromoCodesArrayList);
 
         SellerPromCodesRecyclerView.setAdapter(adapterPromoCodes);
         TotalProductsRecyclerView.setAdapter(adapterSellerProducts);
 
-        Query query= FirebaseDatabase.getInstance().getReference("TotalProductsSeller").orderByChild("productUserId").equalTo(firebaseAuth.getUid());
+        Query query = FirebaseDatabase.getInstance().getReference("TotalProductsSeller").orderByChild("productUserId").equalTo(firebaseAuth.getUid());
         query.addListenerForSingleValueEvent(valueEventListener);
 
-        Query queryPromoCode= FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(firebaseAuth.getUid());
+        Query queryPromoCode = FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(firebaseAuth.getUid());
         queryPromoCode.addListenerForSingleValueEvent(valueEventListenerPromoCodes);
-        return  view;
+        return view;
     }
 
-    ValueEventListener valueEventListener=new ValueEventListener() {
+    ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             modelAddProductsArrayList.clear();
-            if(datasnapshot.exists()){
-                for(DataSnapshot snapshot:datasnapshot.getChildren()){
-                    ModelAddProducts modelAddProducts=snapshot.getValue(ModelAddProducts.class);
+            if (datasnapshot.exists()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    ModelAddProducts modelAddProducts = snapshot.getValue(ModelAddProducts.class);
                     modelAddProductsArrayList.add(modelAddProducts);
                 }
                 adapterSellerProducts.notifyDataSetChanged();
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
 
-    ValueEventListener valueEventListenerPromoCodes=new ValueEventListener() {
+    ValueEventListener valueEventListenerPromoCodes = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             modelPromoCodesArrayList.clear();
-            if(datasnapshot.exists()){
-                for(DataSnapshot snapshot:datasnapshot.getChildren()){
-                    ModelPromoCodes modelPromoCodes=snapshot.getValue(ModelPromoCodes.class);
+            if (datasnapshot.exists()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    ModelPromoCodes modelPromoCodes = snapshot.getValue(ModelPromoCodes.class);
                     modelPromoCodesArrayList.add(modelPromoCodes);
                 }
                 adapterPromoCodes.notifyDataSetChanged();
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
-
-
 
 
 }

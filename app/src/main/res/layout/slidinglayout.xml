@@ -1,53 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:background="@drawable/ic_blob"
         android:id="@+id/overboardImageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content">
+        android:background="@drawable/ic_blob">
 
         <ImageView
             android:id="@+id/imageoverboard"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:scaleType="fitXY" />
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/TitleHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Heading"
         android:layout_below="@id/overboardImageLayout"
-        android:id="@+id/TitleHeading"
-        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_margin="7dp"
         android:fontFamily="@font/signika_semibold"
-        android:textSize="35dp"/>
+        android:text="Heading"
+        android:textColor="@color/black"
+        android:textSize="35dp" />
 
     <TextView
+        android:id="@+id/DescriptionHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description Of The Heading,Description Of The Heading,Description Of The Heading"
+        android:layout_below="@id/TitleHeading"
         android:layout_centerHorizontal="true"
         android:layout_margin="6dp"
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:maxLines="3"
-        android:layout_below="@id/TitleHeading"
-        android:id="@+id/DescriptionHeading"
         android:fontFamily="@font/signika_semibold"
-        android:textSize="20dp"/>
-
+        android:maxLines="3"
+        android:text="Description Of The Heading,Description Of The Heading,Description Of The Heading"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 
 </RelativeLayout>

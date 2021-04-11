@@ -33,49 +33,51 @@ public class FavouritesFragment extends Fragment {
     public FavouritesFragment() {
         // Required empty public constructor
     }
+
     FirebaseAuth firebaseAuth;
     RecyclerView LikedFoodsRecyclerView;
     AdapterLikedFood adapterLikedFood;
-    ArrayList<ModelLikedFoods>modelLikedFoodsArrayList;
+    ArrayList<ModelLikedFoods> modelLikedFoodsArrayList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_favourites, container, false);
-        firebaseAuth=FirebaseAuth.getInstance();
-        modelLikedFoodsArrayList=new ArrayList<>();
-        LikedFoodsRecyclerView=view.findViewById(R.id.LikedFoodsRecyclerView);
-        adapterLikedFood=new AdapterLikedFood(getContext(),modelLikedFoodsArrayList);
+        View view = inflater.inflate(R.layout.fragment_favourites, container, false);
+        firebaseAuth = FirebaseAuth.getInstance();
+        modelLikedFoodsArrayList = new ArrayList<>();
+        LikedFoodsRecyclerView = view.findViewById(R.id.LikedFoodsRecyclerView);
+        adapterLikedFood = new AdapterLikedFood(getContext(), modelLikedFoodsArrayList);
         LikedFoodsRecyclerView.setAdapter(adapterLikedFood);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Query query= FirebaseDatabase.getInstance().getReference("TotalLikedFoods").orderByChild("likedfooduserid").equalTo(firebaseAuth.getUid());
+                Query query = FirebaseDatabase.getInstance().getReference("TotalLikedFoods").orderByChild("likedfooduserid").equalTo(firebaseAuth.getUid());
                 query.addListenerForSingleValueEvent(valueEventListener);
-                adapterLikedFood.isLikedShimmer=false;
+                adapterLikedFood.isLikedShimmer = false;
             }
-        },1900);
+        }, 1900);
 
 
         return view;
     }
 
-    ValueEventListener valueEventListener=new ValueEventListener() {
+    ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             modelLikedFoodsArrayList.clear();
-            if(datasnapshot.exists()){
-                for(DataSnapshot snapshot:datasnapshot.getChildren()){
-                    ModelLikedFoods modelLikedFoods=snapshot.getValue(ModelLikedFoods.class);
+            if (datasnapshot.exists()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    ModelLikedFoods modelLikedFoods = snapshot.getValue(ModelLikedFoods.class);
                     modelLikedFoodsArrayList.add(modelLikedFoods);
                 }
                 adapterLikedFood.notifyDataSetChanged();
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
 }

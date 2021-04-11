@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,133 +13,145 @@
         android:orientation="vertical">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginBottom="5dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <ImageButton
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/BackToListRestaurants"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_baseline_arrow_back_24" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_baseline_search_24" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/ShopNameTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="15dp"
-                    android:id="@+id/BackToListRestaurants"
-                    android:layout_marginBottom="15dp"
-                    android:src="@drawable/ic_baseline_arrow_back_24"/>
-                <ImageButton
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="@font/signika_semibold"
+                    android:text="Chai Point"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ShopCategoryTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:src="@drawable/ic_baseline_search_24"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/signika_semibold"
+                    android:text="Chinese,Fast Food"
+                    android:textColor="#292727"
+                    android:textSize="18dp" />
 
+                <TextView
+                    android:id="@+id/ShopAddresstv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/signika_semibold"
+                    android:text="Address,Rewari,Haryana"
+                    android:textColor="#292727"
+                    android:textSize="18dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chai Point"
-                android:textSize="22dp"
-                android:layout_marginLeft="8dp"
-                android:textStyle="bold"
-                android:id="@+id/ShopNameTv"
-                android:textColor="@color/black"
-                android:fontFamily="@font/signika_semibold"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chinese,Fast Food"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="5dp"
-                android:textSize="18dp"
-                android:id="@+id/ShopCategoryTv"
-                android:fontFamily="@font/signika_semibold"
-                android:textColor="#292727"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address,Rewari,Haryana"
-                android:textSize="18dp"
-                android:layout_marginBottom="3dp"
-                android:id="@+id/ShopAddresstv"
-                android:fontFamily="@font/signika_semibold"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#292727"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/view_line_dotted" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trending Promotion Codes"
-                android:textColor="@color/black"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/signika_semibold"
-                android:layout_marginLeft="8dp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                tools:listitem="@layout/promorows_layout"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:id="@+id/PromoCodesRecyclerViewCollections"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Recomended"
-         android:layout_margin="5dp"
-         android:fontFamily="@font/coiny"
-         android:textColor="#199f79"
-         android:textSize="18dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:id="@+id/RestaurantShowItemsRecyclerView" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E9F2FB"
-        android:visibility="gone"
-        android:id="@+id/fssaiAndLicenseLogo"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_margin="3dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/fssailogopic"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/view_line_dotted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/signika_semibold"
+                    android:text="Trending Promotion Codes"
+                    android:textColor="@color/black" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/PromoCodesRecyclerViewCollections"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/promorows_layout" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:layout_margin="3dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/coiny"
+            android:text="Recomended"
+            android:textColor="#199f79"
+            android:textSize="18dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RestaurantShowItemsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <LinearLayout
+            android:id="@+id/fssaiAndLicenseLogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="License Number:123456789Abc"/>
-    </LinearLayout>
+            android:background="#E9F2FB"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:src="@drawable/fssailogopic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:gravity="center_horizontal"
+                android:text="License Number:123456789Abc"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
 

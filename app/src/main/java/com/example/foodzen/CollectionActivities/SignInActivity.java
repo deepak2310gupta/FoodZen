@@ -35,23 +35,24 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     Pattern pattern;
-    EditText loginEmailEt,loginPasswordEt;
+    EditText loginEmailEt, loginPasswordEt;
     ImageView newUserREG;
     LinearProgressIndicator registerProgressLinearIndicator;
     TextView DontHaveAnAccountYet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         initViews();
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         pattern = Patterns.EMAIL_ADDRESS;
 
         DontHaveAnAccountYet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignInActivity.this, SignUpUserActivity.class);
+                Intent intent = new Intent(SignInActivity.this, SignUpUserActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -59,16 +60,16 @@ public class SignInActivity extends AppCompatActivity {
         logiUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txtEmail=loginEmailEt.getText().toString().trim();
-                String txtPassword=loginPasswordEt.getText().toString().trim();
-                loginUserFunction(txtEmail,txtPassword);
+                String txtEmail = loginEmailEt.getText().toString().trim();
+                String txtPassword = loginPasswordEt.getText().toString().trim();
+                loginUserFunction(txtEmail, txtPassword);
             }
         });
 
         newUserREG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignInActivity.this, SignUpUserActivity.class);
+                Intent intent = new Intent(SignInActivity.this, SignUpUserActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -80,12 +81,11 @@ public class SignInActivity extends AppCompatActivity {
         registerProgressLinearIndicator.setIndeterminate(true);
         registerProgressLinearIndicator.setVisibility(View.VISIBLE);
 
-        if(TextUtils.isEmpty(txtEmail)|| TextUtils.isEmpty(txtPassword)){
+        if (TextUtils.isEmpty(txtEmail) || TextUtils.isEmpty(txtPassword)) {
             registerProgressLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(this, "Empty Credentials", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else {
+        } else {
 
             firebaseAuth.signInWithEmailAndPassword(txtEmail, txtPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
@@ -105,49 +105,48 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    private void checkUserType(){
+    private void checkUserType() {
 
-        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("TotalAppUsers");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
         databaseReference.orderByChild("uid").equalTo(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-             for(DataSnapshot ds:snapshot.getChildren()){
+                for (DataSnapshot ds : snapshot.getChildren()) {
 
-                 String accounttype=""+ds.child("usertype").getValue();
-                 if(accounttype.equals("User")){
-                     Intent intent = new Intent(SignInActivity.this, DashboardUserActivity.class);
-                     startActivity(intent);
-                     Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                     finish();
-                     return;
-                 }
-                 else{
-                     Intent intent = new Intent(SignInActivity.this, DashboardSellerActivity.class);
-                     startActivity(intent);
-                     Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                     finish();
-                     return;
-                 }
-             }
+                    String accounttype = "" + ds.child("usertype").getValue();
+                    if (accounttype.equals("User")) {
+                        Intent intent = new Intent(SignInActivity.this, DashboardUserActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                        return;
+                    } else {
+                        Intent intent = new Intent(SignInActivity.this, DashboardSellerActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                        return;
+                    }
+                }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(SignInActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignInActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void initViews() {
 
-        logiUserButton=findViewById(R.id.logiUserButton);
-        registerProgressLinearIndicator=findViewById(R.id.linearIndicatorProg);
-        loginPasswordEt=findViewById(R.id.loginPasswordEt);
-        loginEmailEt=findViewById(R.id.loginEmailEt);
-        newUserREG=findViewById(R.id.newUserREG);
-        DontHaveAnAccountYet=findViewById(R.id.DontHaveAnAccountYet);
+        logiUserButton = findViewById(R.id.logiUserButton);
+        registerProgressLinearIndicator = findViewById(R.id.linearIndicatorProg);
+        loginPasswordEt = findViewById(R.id.loginPasswordEt);
+        loginEmailEt = findViewById(R.id.loginEmailEt);
+        newUserREG = findViewById(R.id.newUserREG);
+        DontHaveAnAccountYet = findViewById(R.id.DontHaveAnAccountYet);
 
     }
-
 
 
 }

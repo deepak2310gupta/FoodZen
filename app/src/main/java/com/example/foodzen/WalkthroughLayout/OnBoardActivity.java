@@ -19,13 +19,14 @@ public class OnBoardActivity extends AppCompatActivity {
     ViewPager viewpagerid;
     private int mCurrenPage;
     SliderAdapter sliderAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_board);
-        viewpagerid=findViewById(R.id.viewpagerid);
-        mDotsLayout=findViewById(R.id.mDotsLayout);
-        sliderAdapter=new SliderAdapter(this);
+        viewpagerid = findViewById(R.id.viewpagerid);
+        mDotsLayout = findViewById(R.id.mDotsLayout);
+        sliderAdapter = new SliderAdapter(this);
         addDotsIndicator(0);
         viewpagerid.setAdapter(sliderAdapter);
         viewpagerid.addOnPageChangeListener(viewListener);
@@ -98,7 +99,7 @@ public class OnBoardActivity extends AppCompatActivity {
 
                  */
 
-            }
+        }
 
         @Override
         public void onPageScrollStateChanged(int state) {

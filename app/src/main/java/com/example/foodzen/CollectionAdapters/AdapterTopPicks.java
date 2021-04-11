@@ -17,13 +17,13 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
-public class AdapterTopPicks extends RecyclerView.Adapter<AdapterTopPicks.PicksViewHolder>{
+public class AdapterTopPicks extends RecyclerView.Adapter<AdapterTopPicks.PicksViewHolder> {
 
     Context context;
-    ArrayList<ModelTopPicks>modelTopPicksArrayList;
+    ArrayList<ModelTopPicks> modelTopPicksArrayList;
 
-    public boolean isShimmerNew=true;
-    public int shimmerNumberNew=5;
+    public boolean isShimmerNew = true;
+    public int shimmerNumberNew = 5;
 
     public AdapterTopPicks(Context context, ArrayList<ModelTopPicks> modelTopPicksArrayList) {
         this.context = context;
@@ -33,17 +33,16 @@ public class AdapterTopPicks extends RecyclerView.Adapter<AdapterTopPicks.PicksV
     @NonNull
     @Override
     public PicksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.toppicks_layout,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.toppicks_layout, parent, false);
         return new PicksViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PicksViewHolder holder, int position) {
 
-        if(isShimmerNew) {
+        if (isShimmerNew) {
             holder.TopicksShimmer.startShimmer();
-        }
-        else {
+        } else {
             holder.TopicksShimmer.stopShimmer();
             holder.TopicksShimmer.setShimmer(null);
             ModelTopPicks modelTopPicks = modelTopPicksArrayList.get(position);
@@ -53,32 +52,54 @@ public class AdapterTopPicks extends RecyclerView.Adapter<AdapterTopPicks.PicksV
             String four = modelTopPicks.getShopId();
             holder.topPicksDiscoutnView.setBackground(null);
             holder.topPicksRestaurantName.setBackground(null);
-            holder.topimagepicks.setImageResource(R.drawable.burgerking);
             holder.backgrounddiscount.setBackgroundResource(R.drawable.discountbackground);
             holder.topPicksDiscoutnView.setText(two);
             holder.topPicksRestaurantName.setText(one);
+
+            if (four.equals("pizzahutone")) {
+                holder.topimagepicks.setImageResource(R.drawable.pizzahut);
+            } else if (four.equals("haldiramstwo")) {
+                holder.topimagepicks.setImageResource(R.drawable.haldirams);
+            } else if (four.equals("ccdthree")) {
+                holder.topimagepicks.setImageResource(R.drawable.ccd);
+            } else if (four.equals("dominosfour")) {
+                holder.topimagepicks.setImageResource(R.drawable.dominoz);
+            } else if (four.equals("bikanervalafive")) {
+                holder.topimagepicks.setImageResource(R.drawable.bikanervala);
+            } else if (four.equals("starbuckssix")) {
+                holder.topimagepicks.setImageResource(R.drawable.starbucks);
+            } else if (four.equals("kfcseven")) {
+                holder.topimagepicks.setImageResource(R.drawable.kfc);
+            } else if (four.equals("burgerkingfive")) {
+                holder.topimagepicks.setImageResource(R.drawable.burgerking);
+            } else {
+                holder.topimagepicks.setImageResource(R.drawable.sagratna);
+            }
+
+
         }
     }
 
     @Override
     public int getItemCount() {
-        return isShimmerNew?shimmerNumberNew:modelTopPicksArrayList.size();
+        return isShimmerNew ? shimmerNumberNew : modelTopPicksArrayList.size();
     }
 
 
     public class PicksViewHolder extends RecyclerView.ViewHolder {
 
-        TextView topPicksRestaurantName,topPicksDiscoutnView;
+        TextView topPicksRestaurantName, topPicksDiscoutnView;
         ShimmerFrameLayout TopicksShimmer;
         ImageView topimagepicks;
         RelativeLayout backgrounddiscount;
+
         public PicksViewHolder(@NonNull View itemView) {
             super(itemView);
-            topimagepicks=itemView.findViewById(R.id.topPicksImage);
-            TopicksShimmer=itemView.findViewById(R.id.TopicksShimmer);
-            backgrounddiscount=itemView.findViewById(R.id.backgrounddiscount);
-            topPicksDiscoutnView=itemView.findViewById(R.id.topPicksDiscoutnView);
-            topPicksRestaurantName=itemView.findViewById(R.id.topPicksRestaurantName);
+            topimagepicks = itemView.findViewById(R.id.topPicksImage);
+            TopicksShimmer = itemView.findViewById(R.id.TopicksShimmer);
+            backgrounddiscount = itemView.findViewById(R.id.backgrounddiscount);
+            topPicksDiscoutnView = itemView.findViewById(R.id.topPicksDiscoutnView);
+            topPicksRestaurantName = itemView.findViewById(R.id.topPicksRestaurantName);
 
         }
     }

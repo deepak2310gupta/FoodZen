@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CollectionFragments.EmptycartFragment">
 
 
-
     <LinearLayout
+        android:id="@+id/EmptyCartDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/EmptyCartDialog"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/emptycart"/>
+            android:layout_margin="10dp"
+            android:src="@drawable/emptycart" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,9 +27,19 @@
             android:layout_margin="5dp"
             android:fontFamily="@font/arvo"
             android:padding="5dp"
-            android:textStyle="bold"
             android:text="Good Food Is Always Cooking"
             android:textColor="#199F79"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="4dp"
+            android:fontFamily="@font/signika_semibold"
+            android:text="Your cart is empty"
+            android:textColor="@color/black"
             android:textSize="18dp" />
 
         <TextView
@@ -39,34 +47,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="4dp"
-            android:textSize="18dp"
-            android:textColor="@color/black"
             android:fontFamily="@font/signika_semibold"
-            android:text="Your cart is empty" />
+            android:text="Add something from the menu"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:fontFamily="@font/signika_semibold"
-            android:text="Add something from the menu" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#199F79"
-            android:textAlignment="center"
-            android:layout_margin="10dp"
-            android:textStyle="bold"
-            android:textSize="19dp"
             android:id="@+id/BrowseAllRestaurants"
-            android:padding="13dp"
-            android:fontFamily="@font/arvo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:background="@drawable/browserestaurantbutton"
-            android:text="Browse Restaurants"/>
+            android:fontFamily="@font/arvo"
+            android:padding="13dp"
+            android:text="Browse Restaurants"
+            android:textAlignment="center"
+            android:textColor="#199F79"
+            android:textSize="19dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

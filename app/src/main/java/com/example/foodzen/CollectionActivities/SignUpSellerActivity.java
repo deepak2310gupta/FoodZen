@@ -34,14 +34,15 @@ public class SignUpSellerActivity extends AppCompatActivity {
     Button registerButtonN;
     FirebaseAuth firebaseAuthNew;
     TextView alreadyHaveAccountSellerNew;
-    EditText registerShopPasswordEtN,registerShopNameEtN,registerCategoryEtN,registerShopAddressEtN,registerShopEmailEtN,registerShopDiscount;
+    EditText registerShopPasswordEtN, registerShopNameEtN, registerCategoryEtN, registerShopAddressEtN, registerShopEmailEtN, registerShopDiscount;
     Pattern pattern;
     LinearProgressIndicator registerProgressLinearIndicatorNew;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_seller);
-        firebaseAuthNew=FirebaseAuth.getInstance();
+        firebaseAuthNew = FirebaseAuth.getInstance();
         pattern = Patterns.EMAIL_ADDRESS;
 
         initViews();
@@ -49,13 +50,13 @@ public class SignUpSellerActivity extends AppCompatActivity {
         registerButtonN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txtShopName=registerShopNameEtN.getText().toString();
-                String txtShopAdress=registerShopAddressEtN.getText().toString();
-                String txtShopCategory=registerCategoryEtN.getText().toString();
-                String txtDiscoutNote=registerShopDiscount.getText().toString();
-                String txtEmailIdShop=registerShopEmailEtN.getText().toString();
-                String txtPasswordShop=registerShopPasswordEtN.getText().toString();
-                registerSeller(txtShopName,txtShopCategory,txtShopAdress,txtDiscoutNote,txtEmailIdShop,txtPasswordShop);
+                String txtShopName = registerShopNameEtN.getText().toString();
+                String txtShopAdress = registerShopAddressEtN.getText().toString();
+                String txtShopCategory = registerCategoryEtN.getText().toString();
+                String txtDiscoutNote = registerShopDiscount.getText().toString();
+                String txtEmailIdShop = registerShopEmailEtN.getText().toString();
+                String txtPasswordShop = registerShopPasswordEtN.getText().toString();
+                registerSeller(txtShopName, txtShopCategory, txtShopAdress, txtDiscoutNote, txtEmailIdShop, txtPasswordShop);
             }
         });
     }
@@ -66,35 +67,32 @@ public class SignUpSellerActivity extends AppCompatActivity {
         registerProgressLinearIndicatorNew.setIndeterminate(true);
         registerProgressLinearIndicatorNew.setVisibility(View.VISIBLE);
 
-        if(TextUtils.isEmpty(txtShopName)||TextUtils.isEmpty(txtShopCategory)||TextUtils.isEmpty(txtShopAdress) || TextUtils.isEmpty(txtDiscoutNote)||TextUtils.isEmpty(txtEmailIdShop)|| TextUtils.isEmpty(txtPasswordShop)){
+        if (TextUtils.isEmpty(txtShopName) || TextUtils.isEmpty(txtShopCategory) || TextUtils.isEmpty(txtShopAdress) || TextUtils.isEmpty(txtDiscoutNote) || TextUtils.isEmpty(txtEmailIdShop) || TextUtils.isEmpty(txtPasswordShop)) {
             registerProgressLinearIndicatorNew.setVisibility(View.GONE);
             Toast.makeText(this, "Plesae Fill All The Information", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else if(txtPasswordShop.length()<=6){
+        } else if (txtPasswordShop.length() <= 6) {
             registerProgressLinearIndicatorNew.setVisibility(View.GONE);
             Toast.makeText(this, "Password Should be Greater Than 6 Digits", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else if(!pattern.matcher(txtEmailIdShop).matches()){
+        } else if (!pattern.matcher(txtEmailIdShop).matches()) {
             registerProgressLinearIndicatorNew.setVisibility(View.GONE);
             Toast.makeText(this, "Please Enter A Valid Email Id", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else{
+        } else {
             firebaseAuthNew.createUserWithEmailAndPassword(txtEmailIdShop, txtPasswordShop).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        FirebaseUser userNew=firebaseAuthNew.getCurrentUser();
-                        HashMap<String,Object>hashMapSeller=new HashMap<>();
-                        hashMapSeller.put("name","" + txtShopName);
-                        hashMapSeller.put("category","" + txtShopCategory);
+                        FirebaseUser userNew = firebaseAuthNew.getCurrentUser();
+                        HashMap<String, Object> hashMapSeller = new HashMap<>();
+                        hashMapSeller.put("name", "" + txtShopName);
+                        hashMapSeller.put("category", "" + txtShopCategory);
                         hashMapSeller.put("address", "" + txtShopAdress);
-                        hashMapSeller.put("email","" + txtEmailIdShop);
-                        hashMapSeller.put("uid","" + userNew.getUid());
-                        hashMapSeller.put("usertype","RestaurantSeller");
-                        hashMapSeller.put("discountnote",""+txtDiscoutNote);
+                        hashMapSeller.put("email", "" + txtEmailIdShop);
+                        hashMapSeller.put("uid", "" + userNew.getUid());
+                        hashMapSeller.put("usertype", "RestaurantSeller");
+                        hashMapSeller.put("discountnote", "" + txtDiscoutNote);
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
                         databaseReference.child(userNew.getUid()).setValue(hashMapSeller);
                         Toast.makeText(SignUpSellerActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
@@ -117,18 +115,17 @@ public class SignUpSellerActivity extends AppCompatActivity {
 
     }
 
-    private void initViews(){
+    private void initViews() {
 
-        registerShopPasswordEtN=findViewById(R.id.registerShopPasswordEt);
-        registerShopNameEtN=findViewById(R.id.registerShopNameEt);
-        registerCategoryEtN=findViewById(R.id.registerShopCategoryEt);
-        registerShopAddressEtN=findViewById(R.id.registerShopAddressEt);
-        registerShopEmailEtN=findViewById(R.id.registerShopEmailEt);
-        registerShopDiscount=findViewById(R.id.registerShopDiscountNote);
-        registerButtonN=findViewById(R.id.registerhopButton);
-        registerProgressLinearIndicatorNew=findViewById(R.id.registerProgressLinearIndicatorNew);
-        alreadyHaveAccountSellerNew=findViewById(R.id.alreadyHaveAccountSellerNew);
-
+        registerShopPasswordEtN = findViewById(R.id.registerShopPasswordEt);
+        registerShopNameEtN = findViewById(R.id.registerShopNameEt);
+        registerCategoryEtN = findViewById(R.id.registerShopCategoryEt);
+        registerShopAddressEtN = findViewById(R.id.registerShopAddressEt);
+        registerShopEmailEtN = findViewById(R.id.registerShopEmailEt);
+        registerShopDiscount = findViewById(R.id.registerShopDiscountNote);
+        registerButtonN = findViewById(R.id.registerhopButton);
+        registerProgressLinearIndicatorNew = findViewById(R.id.registerProgressLinearIndicatorNew);
+        alreadyHaveAccountSellerNew = findViewById(R.id.alreadyHaveAccountSellerNew);
 
 
     }

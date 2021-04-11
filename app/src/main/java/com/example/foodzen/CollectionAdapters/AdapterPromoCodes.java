@@ -18,7 +18,7 @@ public class AdapterPromoCodes extends RecyclerView.Adapter<AdapterPromoCodes.Pr
 
 
     Context context;
-    ArrayList<ModelPromoCodes>modelPromoCodesArrayList;
+    ArrayList<ModelPromoCodes> modelPromoCodesArrayList;
 
     public AdapterPromoCodes(Context context, ArrayList<ModelPromoCodes> modelPromoCodesArrayList) {
         this.context = context;
@@ -28,16 +28,16 @@ public class AdapterPromoCodes extends RecyclerView.Adapter<AdapterPromoCodes.Pr
     @NonNull
     @Override
     public PromoCodeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.promorows_layout,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.promorows_layout, parent, false);
         return new PromoCodeHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PromoCodeHolder holder, int position){
-        ModelPromoCodes modelPromoCodes=modelPromoCodesArrayList.get(position);
-        String txtOne=modelPromoCodes.getPromocodename();
-        String txtTwo=modelPromoCodes.getPromocodedesc();
-        String txtThree=modelPromoCodes.getPromocodetitle();
+    public void onBindViewHolder(@NonNull PromoCodeHolder holder, int position) {
+        ModelPromoCodes modelPromoCodes = modelPromoCodesArrayList.get(position);
+        String txtOne = modelPromoCodes.getPromocodename();
+        String txtTwo = modelPromoCodes.getPromocodedesc();
+        String txtThree = modelPromoCodes.getPromocodetitle();
 
         holder.pcTitle.setText(txtThree);
         holder.pcDesc.setText(txtTwo);
@@ -52,12 +52,13 @@ public class AdapterPromoCodes extends RecyclerView.Adapter<AdapterPromoCodes.Pr
 
     public class PromoCodeHolder extends RecyclerView.ViewHolder {
 
-        TextView pcTitle,pcDesc,pcName;
+        TextView pcTitle, pcDesc, pcName;
+
         public PromoCodeHolder(@NonNull View itemView) {
             super(itemView);
-            pcTitle=itemView.findViewById(R.id.pcTitle);
-            pcDesc=itemView.findViewById(R.id.pcDesc);
-            pcName=itemView.findViewById(R.id.pcName);
+            pcTitle = itemView.findViewById(R.id.pcTitle);
+            pcDesc = itemView.findViewById(R.id.pcDesc);
+            pcName = itemView.findViewById(R.id.pcName);
 
         }
     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CollectionFragments.AddPromoCodesFragment">
 
     <LinearLayout
@@ -15,109 +15,106 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Promo Codes"
-            android:fontFamily="@font/signika_semibold"
-            android:textSize="30dp"
-            android:padding="3dp"
-            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="9dp"
-            android:layout_gravity="center_horizontal"/>
+            android:fontFamily="@font/signika_semibold"
+            android:padding="3dp"
+            android:text="Add Promo Codes"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
         <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/addPromoCodesImageLogo"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/discountpromologo"
             android:layout_gravity="center_horizontal"
             android:layout_margin="3dp"
-            android:id="@+id/addPromoCodesImageLogo"/>
+            android:src="@drawable/discountpromologo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="13dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/addproductlayoutbackground"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="13dp">
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Promo Code Name"
-                android:padding="8dp"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/black"
-                android:textColor="#199F79"
-                android:layout_margin="7dp"
-                android:fontFamily="@font/signika_semibold"
                 android:id="@+id/addPromoCodeNameNew"
-                android:textSize="16sp"/>
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Promo Code Description"
-                android:padding="8dp"
-                android:inputType="textLongMessage"
-                android:ems="10"
                 android:layout_margin="7dp"
-                android:textColorHint="@color/black"
-                android:textColor="#199F79"
                 android:fontFamily="@font/signika_semibold"
-                android:id="@+id/addPromoCodeDescriptionNew"
-                android:textSize="16sp"/>
+                android:hint="Promo Code Name"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:textColor="#199F79"
+                android:textColorHint="@color/black"
+                android:textSize="16sp" />
+
             <EditText
+                android:id="@+id/addPromoCodeDescriptionNew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:ems="10"
+                android:fontFamily="@font/signika_semibold"
+                android:hint="Promo Code Description"
+                android:inputType="textLongMessage"
+                android:padding="8dp"
+                android:textColor="#199F79"
+                android:textColorHint="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/addPromoCodeSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:fontFamily="@font/signika_semibold"
                 android:hint="Promo Code Sub Title"
                 android:padding="8dp"
-                android:layout_margin="7dp"
-                android:textColorHint="@color/black"
-                android:fontFamily="@font/signika_semibold"
-                android:id="@+id/addPromoCodeSubTitle"
                 android:textColor="#199F79"
-                android:textSize="16sp"/>
+                android:textColorHint="@color/black"
+                android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/addPromoDscount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Reduce Amount"
-                android:padding="8dp"
-                android:textColorHint="@color/black"
                 android:layout_margin="7dp"
-                android:textColor="#199F79"
-                android:inputType="number"
                 android:fontFamily="@font/signika_semibold"
-                android:id="@+id/addPromoDscount"
-                android:textSize="16sp"/>
+                android:hint="Reduce Amount"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="#199F79"
+                android:textColorHint="@color/black"
+                android:textSize="16sp" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/addPromoCodeLinearIndicatorNew"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="3dp"
-                app:indicatorColor="#EF0F29"
                 android:soundEffectsEnabled="true"
-                app:indicatorDirectionLinear="leftToRight"
-                android:id="@+id/addPromoCodeLinearIndicatorNew"/>
+                android:visibility="invisible"
+                app:indicatorColor="#EF0F29"
+                app:indicatorDirectionLinear="leftToRight" />
 
             <Button
+                android:id="@+id/addPromoCodesButtonNew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Promo Code"
-                android:fontFamily="@font/signika_semibold"
-                android:textSize="20sp"
-                android:id="@+id/addPromoCodesButtonNew"
-                android:background="@drawable/loginbuttonbackgroung"
-                android:textColor="@color/white"
-                android:padding="10dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:layout_gravity="center_horizontal"/>
+                android:background="@drawable/loginbuttonbackgroung"
+                android:fontFamily="@font/signika_semibold"
+                android:padding="10dp"
+                android:text="Add Promo Code"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
-
-
-
-
-
-
 
 
     </LinearLayout>

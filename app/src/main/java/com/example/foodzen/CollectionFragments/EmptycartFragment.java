@@ -19,16 +19,15 @@ public class EmptycartFragment extends Fragment {
     public EmptycartFragment() {
         // Required empty public constructor
     }
+
     TextView BrowseAllRestaurants;
 
 
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_emptycart, container, false);
-        BrowseAllRestaurants=view.findViewById(R.id.BrowseAllRestaurants);
+        View view = inflater.inflate(R.layout.fragment_emptycart, container, false);
+        BrowseAllRestaurants = view.findViewById(R.id.BrowseAllRestaurants);
 
         BrowseAllRestaurants.setOnClickListener(new View.OnClickListener() {
             @Override

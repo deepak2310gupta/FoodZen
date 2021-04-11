@@ -16,40 +16,41 @@ public class DashboardSellerActivity extends AppCompatActivity {
 
 
     ChipNavigationBar menuChipNavigationBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_seller);
 
-        menuChipNavigationBar=findViewById(R.id.menuChipNavigationBarForSeller);
+        menuChipNavigationBar = findViewById(R.id.menuChipNavigationBarForSeller);
 
         HomeSellerFragment homeSellerFragment = new HomeSellerFragment();
         FragmentTransaction fragmentTransactionAgain1 = getSupportFragmentManager().beginTransaction();
-        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeSellerFragment,"").commit();
+        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeSellerFragment, "").commit();
 
         menuChipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-                switch (i){
+                switch (i) {
                     case R.id.homeSeller:
                         HomeSellerFragment homeSellerFragment = new HomeSellerFragment();
                         FragmentTransaction fragmentTransactionAgain1 = getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeSellerFragment,"").commit();
+                        fragmentTransactionAgain1.replace(R.id.collectionfragmentsReplacerForSeller, homeSellerFragment, "").commit();
                         break;
                     case R.id.AddproductSeller:
                         AddProductFragment addProductFragment = new AddProductFragment();
                         FragmentTransaction fragmentTransactionAgain2 = getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionAgain2.replace(R.id.collectionfragmentsReplacerForSeller, addProductFragment,"").commit();
+                        fragmentTransactionAgain2.replace(R.id.collectionfragmentsReplacerForSeller, addProductFragment, "").commit();
                         break;
                     case R.id.profileSeller:
                         ProfileFragment profileFragment = new ProfileFragment();
                         FragmentTransaction fragmentTransactionAgain3 = getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionAgain3.replace(R.id.collectionfragmentsReplacerForSeller, profileFragment,"").commit();
+                        fragmentTransactionAgain3.replace(R.id.collectionfragmentsReplacerForSeller, profileFragment, "").commit();
                         break;
                     case R.id.promoCodesSeller:
                         AddPromoCodesFragment promoCodesFragment = new AddPromoCodesFragment();
                         FragmentTransaction fragmentTransactionAgain4 = getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionAgain4.replace(R.id.collectionfragmentsReplacerForSeller, promoCodesFragment,"").commit();
+                        fragmentTransactionAgain4.replace(R.id.collectionfragmentsReplacerForSeller, promoCodesFragment, "").commit();
                         break;
 
                 }

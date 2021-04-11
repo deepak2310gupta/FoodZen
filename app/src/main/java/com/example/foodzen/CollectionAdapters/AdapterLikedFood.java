@@ -21,10 +21,10 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
 
 
     Context context;
-    ArrayList<ModelLikedFoods>modelLikedFoodsArrayList;
+    ArrayList<ModelLikedFoods> modelLikedFoodsArrayList;
 
-    public boolean isLikedShimmer=true;
-    public int likedShimmerNum=6;
+    public boolean isLikedShimmer = true;
+    public int likedShimmerNum = 6;
 
 
     public AdapterLikedFood(Context context, ArrayList<ModelLikedFoods> modelLikedFoodsArrayList) {
@@ -35,17 +35,16 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
     @NonNull
     @Override
     public LikeFoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.likedfoodslayout,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.likedfoodslayout, parent, false);
         return new LikeFoodHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LikeFoodHolder holder, int position) {
 
-        if(isLikedShimmer){
+        if (isLikedShimmer) {
             holder.shimmerlikedlayout.startShimmer();
-        }
-        else {
+        } else {
             holder.shimmerlikedlayout.stopShimmer();
             holder.shimmerlikedlayout.setShimmer(null);
             ModelLikedFoods modelLikedFoods = modelLikedFoodsArrayList.get(position);
@@ -73,23 +72,24 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
     @Override
     public int getItemCount() {
 
-        return isLikedShimmer?likedShimmerNum:modelLikedFoodsArrayList.size();
+        return isLikedShimmer ? likedShimmerNum : modelLikedFoodsArrayList.size();
     }
 
     public class LikeFoodHolder extends RecyclerView.ViewHolder {
 
         ImageView imageLiked;
         ShimmerFrameLayout shimmerlikedlayout;
-        TextView likeddiscprice,likedoriPrice,foodLikedShopname,foodLikedName,likedDiscountNote;
+        TextView likeddiscprice, likedoriPrice, foodLikedShopname, foodLikedName, likedDiscountNote;
+
         public LikeFoodHolder(@NonNull View itemView) {
             super(itemView);
-            shimmerlikedlayout=itemView.findViewById(R.id.shimmerlikedlayout);
-            imageLiked=itemView.findViewById(R.id.imageLiked);
-            likeddiscprice=itemView.findViewById(R.id.likeddiscprice);
-            likedoriPrice=itemView.findViewById(R.id.likedoriPrice);
-            foodLikedShopname=itemView.findViewById(R.id.foodLikedShopname);
-            foodLikedName=itemView.findViewById(R.id.foodLikedName);
-            likedDiscountNote=itemView.findViewById(R.id.likedDiscountNote);
+            shimmerlikedlayout = itemView.findViewById(R.id.shimmerlikedlayout);
+            imageLiked = itemView.findViewById(R.id.imageLiked);
+            likeddiscprice = itemView.findViewById(R.id.likeddiscprice);
+            likedoriPrice = itemView.findViewById(R.id.likedoriPrice);
+            foodLikedShopname = itemView.findViewById(R.id.foodLikedShopname);
+            foodLikedName = itemView.findViewById(R.id.foodLikedName);
+            likedDiscountNote = itemView.findViewById(R.id.likedDiscountNote);
         }
     }
 

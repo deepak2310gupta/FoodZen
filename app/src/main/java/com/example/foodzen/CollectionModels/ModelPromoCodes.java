@@ -3,7 +3,7 @@ package com.example.foodzen.CollectionModels;
 public class ModelPromoCodes {
 
 
-    public String  promoCodeid,promocodename,promocodedesc,promocodetitle,promodiscountamount,promocodeUserId;
+    public String promoCodeid, promocodename, promocodedesc, promocodetitle, promodiscountamount, promocodeUserId;
 
     public ModelPromoCodes() {
     }

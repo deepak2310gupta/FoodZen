@@ -9,6 +9,12 @@
     android:layout_marginRight="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemsShimmerLayout">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,7 +39,7 @@
                         android:scaleType="fitXY"
                         android:id="@+id/FoodImage"
                         android:layout_height="110dp"
-                        android:src="@drawable/dosa">
+                        android:background="@color/colorShimmer">
 
                     </ImageView>
                 </androidx.cardview.widget.CardView>
@@ -50,42 +56,44 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/vegpic"
+                    android:background="@color/colorShimmer"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="2dp"
                     android:id="@+id/itemTypeImageIcon"/>
 
                 <TextView
                     android:id="@+id/FoodItemNameNew"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/itemTypeImageIcon"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="40dp"
                     android:fontFamily="@font/gudea"
-                    android:text="Tandoori Chaap"
+                    android:background="@color/colorShimmer"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/FoodItemOriginalPriceNew"
-                    android:layout_width="wrap_content"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/FoodItemNameNew"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:fontFamily="@font/gudea"
-                    android:text="Rs 100"
+                    android:background="@color/colorShimmer"
                     android:textStyle="bold"
+                    android:textAlignment="textStart"
                     android:textColor="#EF2323"
                     android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/FoodItemDiscountedPriceNew"
-                    android:layout_width="wrap_content"
+                    android:layout_width="45dp"
+                    android:textAlignment="textStart"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/FoodItemNameNew"
                     android:layout_marginLeft="5dp"
@@ -93,7 +101,7 @@
                     android:layout_marginBottom="2dp"
                     android:layout_toEndOf="@id/FoodItemOriginalPriceNew"
                     android:fontFamily="@font/gudea"
-                    android:text="Rs 50"
+                    android:background="@color/colorShimmer"
                     android:textStyle="bold"
                     android:textColor="#27CC2A"
                     android:textSize="18dp" />
@@ -110,7 +118,7 @@
                     android:maxLines="3"
                     android:textStyle="bold"
                     android:ems="4"
-                    android:text="Description In Maximum 2 Lines Description In Maximum 2 Lines"
+                    android:background="@color/colorShimmer"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -126,7 +134,7 @@
                 android:layout_marginTop="-30dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/addlayoutbackground"
+                android:background="@color/colorShimmer"
                 android:padding="2dp"
                 tools:ignore="NotSibling">
 
@@ -158,5 +166,7 @@
 
 
     </androidx.cardview.widget.CardView>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </RelativeLayout>

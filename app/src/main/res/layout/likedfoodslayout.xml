@@ -1,108 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="170dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
+    android:layout_height="235dp"
     android:layout_margin="10dp"
-    android:layout_height="235dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
 
     <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerlikedlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/shimmerlikedlayout">
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageLiked"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorShimmer"/>
-
-        <TextView
-            android:id="@+id/foodLikedName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="2dp"
-            android:textAlignment="center"
-            android:layout_below="@id/imageLiked"
-            android:textSize="15dp"
-            android:fontFamily="@font/assistant_semibold"
-            android:background="@color/colorShimmer"
-            android:textColor="#199f79" />
-
-        <TextView
-            android:id="@+id/foodLikedShopname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="2dp"
-            android:layout_below="@id/foodLikedName"
-            android:fontFamily="@font/assistant_semibold"
-            android:background="@color/colorShimmer"
-            android:textColor="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/foodLikedShopname"
-            android:id="@+id/likedPriceLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/likedoriPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:textAlignment="textEnd"
-                android:fontFamily="@font/assistant_semibold"
-                android:background="@color/colorShimmer"
-                android:textSize="15dp"
-                android:textColor="#DC1717" />
-
-            <TextView
-                android:id="@+id/likeddiscprice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:textAlignment="textStart"
-                android:layout_weight="1"
-                android:fontFamily="@font/assistant_semibold"
-                android:background="@color/colorShimmer"
-                android:textSize="15dp"
-                android:textColor="#419F19" />
-        </LinearLayout>
-
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/discountnotebackground"
-            android:id="@+id/likedDiscountNote"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:textAlignment="center"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/likedPriceLayout"
-            android:textColor="@color/white"
-            android:fontFamily="@font/signika_semibold" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageLiked"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorShimmer"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/foodLikedName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageLiked"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorShimmer"
+                android:fontFamily="@font/assistant_semibold"
+                android:textAlignment="center"
+                android:textColor="#199f79"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/foodLikedShopname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foodLikedName"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorShimmer"
+                android:fontFamily="@font/assistant_semibold"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/likedPriceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foodLikedShopname"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/likedoriPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorShimmer"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:textAlignment="textEnd"
+                    android:textColor="#DC1717"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/likeddiscprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorShimmer"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:textAlignment="textStart"
+                    android:textColor="#419F19"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/likedDiscountNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/likedPriceLayout"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/discountnotebackground"
+                android:fontFamily="@font/signika_semibold"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 

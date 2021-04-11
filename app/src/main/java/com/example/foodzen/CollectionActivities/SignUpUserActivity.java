@@ -32,8 +32,8 @@ public class SignUpUserActivity extends AppCompatActivity {
 
     Button registerButton;
     FirebaseAuth firebaseAuth;
-    TextView alreadyHaveAccount,txtForSellerRegisteration;
-    EditText registerPasswordEt,registerNameEt,registerMobileEt,registerAddressEt,registerEmailEt;
+    TextView alreadyHaveAccount, txtForSellerRegisteration;
+    EditText registerPasswordEt, registerNameEt, registerMobileEt, registerAddressEt, registerEmailEt;
     Pattern pattern;
     ImageView BackToLogin;
     LinearProgressIndicator registerProgressLinearIndicator;
@@ -43,34 +43,34 @@ public class SignUpUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         initViews();
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         pattern = Patterns.EMAIL_ADDRESS;
 
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignUpUserActivity.this,SignInActivity.class);
+                Intent intent = new Intent(SignUpUserActivity.this, SignInActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-      
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txtname=registerNameEt.getText().toString().trim();
-                String txtphone=registerMobileEt.getText().toString().trim();
-                String txtaddress=registerAddressEt.getText().toString().trim();
-                String txtemail=registerEmailEt.getText().toString().trim();
-                String txtpassword=registerPasswordEt.getText().toString().trim();
-                registerUser(txtname,txtphone,txtaddress,txtemail,txtpassword);
+                String txtname = registerNameEt.getText().toString().trim();
+                String txtphone = registerMobileEt.getText().toString().trim();
+                String txtaddress = registerAddressEt.getText().toString().trim();
+                String txtemail = registerEmailEt.getText().toString().trim();
+                String txtpassword = registerPasswordEt.getText().toString().trim();
+                registerUser(txtname, txtphone, txtaddress, txtemail, txtpassword);
             }
         });
 
         txtForSellerRegisteration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignUpUserActivity.this,SignUpSellerActivity.class);
+                Intent intent = new Intent(SignUpUserActivity.this, SignUpSellerActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -79,7 +79,7 @@ public class SignUpUserActivity extends AppCompatActivity {
         BackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignUpUserActivity.this,SignInActivity.class);
+                Intent intent = new Intent(SignUpUserActivity.this, SignInActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -89,16 +89,16 @@ public class SignUpUserActivity extends AppCompatActivity {
 
     private void initViews() {
 
-        registerPasswordEt=findViewById(R.id.registerPasswordEt);
-        registerNameEt=findViewById(R.id.registerNameEt);
-        registerButton=findViewById(R.id.registerButton);
-        registerMobileEt=findViewById(R.id.registerMobileEt);
-        alreadyHaveAccount=findViewById(R.id.alreadyHaveAccount);
-        registerAddressEt=findViewById(R.id.registerAddressEt);
-        registerEmailEt=findViewById(R.id.registerEmailEt);
-        registerProgressLinearIndicator=findViewById(R.id.registerProgressLinearIndicator);
-        txtForSellerRegisteration=findViewById(R.id.txtForSellerRegisteration);
-        BackToLogin=findViewById(R.id.BackToLogin);
+        registerPasswordEt = findViewById(R.id.registerPasswordEt);
+        registerNameEt = findViewById(R.id.registerNameEt);
+        registerButton = findViewById(R.id.registerButton);
+        registerMobileEt = findViewById(R.id.registerMobileEt);
+        alreadyHaveAccount = findViewById(R.id.alreadyHaveAccount);
+        registerAddressEt = findViewById(R.id.registerAddressEt);
+        registerEmailEt = findViewById(R.id.registerEmailEt);
+        registerProgressLinearIndicator = findViewById(R.id.registerProgressLinearIndicator);
+        txtForSellerRegisteration = findViewById(R.id.txtForSellerRegisteration);
+        BackToLogin = findViewById(R.id.BackToLogin);
 
     }
 
@@ -108,46 +108,43 @@ public class SignUpUserActivity extends AppCompatActivity {
         registerProgressLinearIndicator.setIndeterminate(true);
         registerProgressLinearIndicator.setVisibility(View.VISIBLE);
 
-        if(TextUtils.isEmpty(txtname)||TextUtils.isEmpty(txtphone)||TextUtils.isEmpty(txtaddress) || TextUtils.isEmpty(txtemail)||TextUtils.isEmpty(txtpassword)){
+        if (TextUtils.isEmpty(txtname) || TextUtils.isEmpty(txtphone) || TextUtils.isEmpty(txtaddress) || TextUtils.isEmpty(txtemail) || TextUtils.isEmpty(txtpassword)) {
             registerProgressLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(this, "Plesae Fill All The Information", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else if(txtpassword.length()<=6){
+        } else if (txtpassword.length() <= 6) {
             registerProgressLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(this, "Password Should be Greater Than 6 Digits", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else if(!pattern.matcher(txtemail).matches()){
+        } else if (!pattern.matcher(txtemail).matches()) {
             registerProgressLinearIndicator.setVisibility(View.GONE);
             Toast.makeText(this, "Please Enter A Valid Email Id", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else {
+        } else {
 
             firebaseAuth.createUserWithEmailAndPassword(txtemail, txtpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
 
-                                FirebaseUser user=firebaseAuth.getCurrentUser();
-                                HashMap<String,Object> hashMap=new HashMap<>();
-                                hashMap.put("name","" + txtname);
-                                hashMap.put("phone","" + txtphone);
-                                hashMap.put("address", "" + txtaddress);
-                                hashMap.put("email","" + txtemail);
-                                hashMap.put("uid","" + user.getUid());
-                                hashMap.put("usertype","User");
-                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
-                                databaseReference.child(user.getUid()).setValue(hashMap);
-                                Toast.makeText(SignUpUserActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUpUserActivity.this, DashboardUserActivity.class);
-                                startActivity(intent);
-                                finish();
-                                return;
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("name", "" + txtname);
+                        hashMap.put("phone", "" + txtphone);
+                        hashMap.put("address", "" + txtaddress);
+                        hashMap.put("email", "" + txtemail);
+                        hashMap.put("uid", "" + user.getUid());
+                        hashMap.put("usertype", "User");
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TotalAppUsers");
+                        databaseReference.child(user.getUid()).setValue(hashMap);
+                        Toast.makeText(SignUpUserActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpUserActivity.this, DashboardUserActivity.class);
+                        startActivity(intent);
+                        finish();
+                        return;
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     registerProgressLinearIndicator.setVisibility(View.GONE);
@@ -158,9 +155,6 @@ public class SignUpUserActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 
 
 }

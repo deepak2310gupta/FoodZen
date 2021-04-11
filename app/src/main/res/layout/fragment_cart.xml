@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
     tools:context=".CollectionFragments.CartFragment">
 
 
@@ -15,174 +14,177 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/OrdeToLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:id="@+id/OrdeToLayout"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:fontFamily="@font/assistant_semibold"
                 android:layout_gravity="center_horizontal"
-                android:text="Order To"/>
+                android:fontFamily="@font/assistant_semibold"
+                android:text="Order To"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/RestaurantShopNameShowOnCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:id="@+id/RestaurantShopNameShowOnCart"
-                android:textColor="@color/black"
-                android:fontFamily="@font/assistant_semibold"
                 android:layout_gravity="center_horizontal"
-                android:text="Shop Name"/>
+                android:fontFamily="@font/assistant_semibold"
+                android:text="Shop Name"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#75000000"
-            android:layout_marginBottom="1dp"/>
+            android:layout_marginBottom="1dp"
+            android:background="#75000000" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:id="@+id/cartItemsCollectionRecyclerView"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:id="@+id/BillCardLayout"
-        android:layout_height="wrap_content">
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
-
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_margin="5dp"
-               android:fontFamily="@font/adamina"
-               android:padding="3dp"
-               android:text="Bill Details"
-               android:textStyle="bold"
-               android:textColor="@color/black"
-               android:textSize="18dp" />
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartItemsCollectionRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="2dp"
-            android:orientation="horizontal">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/adamina"
-                android:padding="2dp"
-                android:textStyle="bold"
-                android:text="Item Total"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:fontFamily="@font/adamina"
-                android:text="240"
-                android:id="@+id/NetCurrentFinalTotalSumBeforeDeliveryFee"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="16dp" />
-        </LinearLayout>
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/BillCardLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="2dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/adamina"
-                android:textStyle="bold"
-                android:padding="2dp"
-                android:text="Delivery Partner Fee"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:fontFamily="@font/adamina"
-                android:text="25"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-        </LinearLayout>
-        <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/adamina"
+                    android:padding="3dp"
+                    android:text="Bill Details"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/adamina"
+                        android:padding="2dp"
+                        android:text="Item Total"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/NetCurrentFinalTotalSumBeforeDeliveryFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:fontFamily="@font/adamina"
+                        android:text="240"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/adamina"
+                        android:padding="2dp"
+                        android:text="Delivery Partner Fee"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:fontFamily="@font/adamina"
+                        android:text="25"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/adamina"
+                        android:text="To Pay"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/NetCurrentFinalTotalSumAfterDeliveryFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:fontFamily="@font/adamina"
+                        android:text="260"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/ProceedToPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="2dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/adamina"
-                android:text="To Pay"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:fontFamily="@font/adamina"
-                android:textStyle="bold"
-                android:text="260"
-                android:id="@+id/NetCurrentFinalTotalSumAfterDeliveryFee"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-        </LinearLayout>
-       </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-
-
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/loginbuttonbackgroung"
+            android:fontFamily="@font/assistant_semibold"
             android:text="Proceed To Pay"
             android:textAllCaps="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/ProceedToPayment"
-            android:textSize="23dp"
-            android:fontFamily="@font/assistant_semibold"
-            android:background="@drawable/loginbuttonbackgroung"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="23dp" />
 
     </LinearLayout>
 

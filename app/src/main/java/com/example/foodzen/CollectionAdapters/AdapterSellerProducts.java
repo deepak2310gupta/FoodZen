@@ -23,7 +23,7 @@ public class AdapterSellerProducts extends RecyclerView.Adapter<AdapterSellerPro
 
 
     Context context;
-    ArrayList<ModelAddProducts>modelAddProductsArrayList;
+    ArrayList<ModelAddProducts> modelAddProductsArrayList;
 
     public AdapterSellerProducts(Context context, ArrayList<ModelAddProducts> modelAddProductsArrayList) {
         this.context = context;
@@ -33,29 +33,30 @@ public class AdapterSellerProducts extends RecyclerView.Adapter<AdapterSellerPro
     @NonNull
     @Override
     public SellerproductsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.sellerrowproducts,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.sellerrowproducts, parent, false);
         return new SellerproductsHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull SellerproductsHolder holder, int position) {
 
-        ModelAddProducts modelAddProducts=modelAddProductsArrayList.get(position);
-        String txtFoodName=modelAddProducts.getpName();
-        String txtFoodDesc=modelAddProducts.getpDesc();
-        String txtFoodOriPrice=modelAddProducts.getOriPrice();
-        String txtFoodDiscPrice=modelAddProducts.getDiscountPrice();
-        String txtFoodType=modelAddProducts.getItemType();
+        ModelAddProducts modelAddProducts = modelAddProductsArrayList.get(position);
+        String txtFoodName = modelAddProducts.getpName();
+        String txtFoodDesc = modelAddProducts.getpDesc();
+        String txtFoodOriPrice = modelAddProducts.getOriPrice();
+        String txtFoodDiscPrice = modelAddProducts.getDiscountPrice();
+        String txtFoodType = modelAddProducts.getItemType();
 
         holder.FoodItemNameNewOne.setText(txtFoodName);
         holder.FoodItemDescriptionNewOne.setText(txtFoodDesc);
         holder.FoodItemOriginalPriceNewOne.setText(txtFoodOriPrice);
         holder.FoodItemDiscountedPriceNewOne.setText(txtFoodDiscPrice);
-        holder.FoodItemOriginalPriceNewOne.setPaintFlags( holder.FoodItemOriginalPriceNewOne.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.FoodItemOriginalPriceNewOne.setPaintFlags(holder.FoodItemOriginalPriceNewOne.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        if(txtFoodType.equals("Veg")){
+        if (txtFoodType.equals("Veg")) {
             Picasso.get().load(R.drawable.vegpic).into(holder.itemTypeImageIconNew);
-        }else{
+        } else {
             Picasso.get().load(R.drawable.nonvegpic).into(holder.itemTypeImageIconNew);
         }
 
@@ -73,18 +74,19 @@ public class AdapterSellerProducts extends RecyclerView.Adapter<AdapterSellerPro
     }
 
     public class SellerproductsHolder extends RecyclerView.ViewHolder {
-        ImageView FoodImageNewOne,itemTypeImageIconNew;
-        TextView FoodItemNameNewOne,FoodItemOriginalPriceNewOne,FoodItemDescriptionNewOne,FoodItemDiscountedPriceNewOne;
+        ImageView FoodImageNewOne, itemTypeImageIconNew;
+        TextView FoodItemNameNewOne, FoodItemOriginalPriceNewOne, FoodItemDescriptionNewOne, FoodItemDiscountedPriceNewOne;
         RelativeLayout DeleteProductLayout;
+
         public SellerproductsHolder(@NonNull View itemView) {
             super(itemView);
-            itemTypeImageIconNew=itemView.findViewById(R.id.itemTypeImageIconNew);
-            FoodImageNewOne=itemView.findViewById(R.id.FoodImageNewOne);
-            FoodItemNameNewOne=itemView.findViewById(R.id.FoodItemNameNewOne);
-            FoodItemOriginalPriceNewOne=itemView.findViewById(R.id.FoodItemOriginalPriceNewOne);
-            FoodItemDescriptionNewOne=itemView.findViewById(R.id.FoodItemDescriptionNewOne);
-            FoodItemDiscountedPriceNewOne=itemView.findViewById(R.id.FoodItemDiscountedPriceNewOne);
-            DeleteProductLayout=itemView.findViewById(R.id.DeleteProductLayout);
+            itemTypeImageIconNew = itemView.findViewById(R.id.itemTypeImageIconNew);
+            FoodImageNewOne = itemView.findViewById(R.id.FoodImageNewOne);
+            FoodItemNameNewOne = itemView.findViewById(R.id.FoodItemNameNewOne);
+            FoodItemOriginalPriceNewOne = itemView.findViewById(R.id.FoodItemOriginalPriceNewOne);
+            FoodItemDescriptionNewOne = itemView.findViewById(R.id.FoodItemDescriptionNewOne);
+            FoodItemDiscountedPriceNewOne = itemView.findViewById(R.id.FoodItemDiscountedPriceNewOne);
+            DeleteProductLayout = itemView.findViewById(R.id.DeleteProductLayout);
         }
     }
 }

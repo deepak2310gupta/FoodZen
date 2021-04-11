@@ -3,7 +3,7 @@ package com.example.foodzen.CollectionModels;
 public class ModelAddProducts {
 
 
-    public String pId,pName,pDesc,oriPrice,itemType,discountPrice,discontNote,productUserId;
+    public String pId, pName, pDesc, oriPrice, itemType, discountPrice, discontNote, productUserId;
 
 
     public ModelAddProducts() {

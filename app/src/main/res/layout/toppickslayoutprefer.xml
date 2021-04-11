@@ -11,9 +11,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Top Picks For You"
+        android:text="Top Brands For You"
         android:layout_margin="5dp"
-        android:textSize="20dp"
+        android:textSize="19dp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/assistant_semibold"/>
@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_margin="1dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
@@ -43,8 +43,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/pizzahut"/>
@@ -70,8 +70,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/haldirams"/>
@@ -97,8 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ccd"/>
@@ -111,7 +111,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_margin="1dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
@@ -133,8 +133,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/dominoz"/>
@@ -161,8 +161,8 @@
                     android:layout_height="wrap_content" />
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="5dp"
                     android:src="@drawable/bikanervala" />
@@ -188,8 +188,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/burgerking"/>
@@ -202,7 +202,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_margin="1dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
@@ -224,8 +224,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/buckstar"/>
@@ -251,8 +251,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/kfc"/>
@@ -278,8 +278,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/sagratna"/>
@@ -290,15 +290,16 @@
 
     </LinearLayout>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Done"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="25dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="15dp"
+        android:id="@+id/doneButtonTopPicks"
         android:textAllCaps="false"
         android:fontFamily="@font/signika_semibold"
         android:background="@drawable/loginbuttonbackgroung"

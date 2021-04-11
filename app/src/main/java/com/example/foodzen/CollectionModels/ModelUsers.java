@@ -3,7 +3,7 @@ package com.example.foodzen.CollectionModels;
 public class ModelUsers {
 
 
-    public String name,phone,address,email,uid,usertype;
+    public String name, phone, address, email, uid, usertype;
 
 
     public ModelUsers() {
