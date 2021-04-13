@@ -52,6 +52,7 @@ public class AdapterTopPicks extends RecyclerView.Adapter<AdapterTopPicks.PicksV
             String four = modelTopPicks.getShopId();
             holder.topPicksDiscoutnView.setBackground(null);
             holder.topPicksRestaurantName.setBackground(null);
+            holder.topimagepicks.setBackground(null);
             holder.backgrounddiscount.setBackgroundResource(R.drawable.discountbackground);
             holder.topPicksDiscoutnView.setText(two);
             holder.topPicksRestaurantName.setText(one);

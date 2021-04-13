@@ -3,21 +3,29 @@ package com.example.foodzen.CollectionModels;
 public class ModelUsers {
 
 
-    public String name, phone, address, email, uid, usertype;
+    public String name, phone, address, email, uid,profileimage,usertype;
 
 
     public ModelUsers() {
     }
 
-    public ModelUsers(String name, String phone, String address, String email, String uid, String usertype) {
+    public ModelUsers(String name, String phone, String address, String email, String uid, String profileimage, String usertype) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.uid = uid;
+        this.profileimage = profileimage;
         this.usertype = usertype;
     }
 
+    public String getProfileimage() {
+        return profileimage;
+    }
+
+    public void setProfileimage(String profileimage) {
+        this.profileimage = profileimage;
+    }
 
     public String getName() {
         return name;

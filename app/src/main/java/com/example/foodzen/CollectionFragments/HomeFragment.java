@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
                 query.addListenerForSingleValueEvent(valueEventListener);
                 adapterRestaurants.isShimmer = false;
             }
-        }, 1700);
+        }, 1900);
 
         showTopPicksDialog();
 

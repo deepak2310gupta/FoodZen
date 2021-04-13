@@ -16,6 +16,7 @@ import com.example.foodzen.CollectionActivities.RestaurantShowItemsActivity;
 import com.example.foodzen.CollectionModels.ModelSeller;
 import com.example.foodzen.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,7 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
             String txtRaddress = modelSeller.getAddress();
             String txtRcategory = modelSeller.getCategory();
             String txtRdiscountNote = modelSeller.getDiscountnote();
+            String resImage=modelSeller.getProfileimageseller();
             String userId = modelSeller.getUid();
             holder.RestaurantName.setBackground(null);
             holder.RestaurantDiscountNote.setBackground(null);
@@ -61,7 +63,7 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
             holder.RestaurantAddress.setBackground(null);
             holder.helpNoteDiscount.setBackgroundResource(R.drawable.shopdiscountbackground);
             holder.RestaurantName.setText(txtRName);
-            holder.RestaurantImage.setImageResource(R.drawable.pizza);
+            Picasso.get().load(resImage).into(holder.RestaurantImage);
             holder.RestaurantAddress.setText(txtRaddress);
             holder.RestaurantCategory.setText(txtRcategory);
             holder.RestaurantDiscountNote.setText(txtRdiscountNote);

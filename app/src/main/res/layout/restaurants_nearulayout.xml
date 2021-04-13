@@ -27,7 +27,7 @@
 
                     <ImageView
                         android:id="@+id/RestaurantImage"
-                        android:layout_width="110dp"
+                        android:layout_width="125dp"
                         android:layout_height="110dp"
                         android:background="@color/colorShimmer"
                         android:scaleType="fitXY" />
@@ -39,7 +39,7 @@
                 android:layout_width="98dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/restaurantsImageLayout"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="-13dp"
                 android:background="@null"
                 android:padding="3dp">

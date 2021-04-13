@@ -31,7 +31,7 @@
                 android:id="@+id/FoodImageRestaurantLayout">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="130dp"
+                    android:layout_width="110dp"
                     android:layout_height="110dp"
                     app:cardCornerRadius="14dp">
                     <ImageView
@@ -132,7 +132,7 @@
                 android:layout_below="@id/FoodImageRestaurantLayout"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="-30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/colorShimmer"
                 android:padding="2dp"

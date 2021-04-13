@@ -2,20 +2,29 @@ package com.example.foodzen.CollectionModels;
 
 public class ModelLikedFoods {
 
-    public String likedfoodid, likedfoodname, likedfoodshopname, likedfooduserid, likedfoodoriprice, likedfooddiscountprice, likedfooditemtype, likedfooddiscountnote;
+    public String likedfoodid, likedfoodname, likedfoodshopname, likedfooduserid,likedfoodproductimage, likedfoodoriprice, likedfooddiscountprice, likedfooditemtype, likedfooddiscountnote;
 
     public ModelLikedFoods() {
     }
 
-    public ModelLikedFoods(String likedfoodid, String likedfoodname, String likedfoodshopname, String likedfooduserid, String likedfoodoriprice, String likedfooddiscountprice, String likedfooditemtype, String likedfooddiscountnote) {
+    public ModelLikedFoods(String likedfoodid, String likedfoodname, String likedfoodshopname, String likedfooduserid, String likedfoodproductimage, String likedfoodoriprice, String likedfooddiscountprice, String likedfooditemtype, String likedfooddiscountnote) {
         this.likedfoodid = likedfoodid;
         this.likedfoodname = likedfoodname;
         this.likedfoodshopname = likedfoodshopname;
         this.likedfooduserid = likedfooduserid;
+        this.likedfoodproductimage = likedfoodproductimage;
         this.likedfoodoriprice = likedfoodoriprice;
         this.likedfooddiscountprice = likedfooddiscountprice;
         this.likedfooditemtype = likedfooditemtype;
         this.likedfooddiscountnote = likedfooddiscountnote;
+    }
+
+    public String getLikedfoodproductimage() {
+        return likedfoodproductimage;
+    }
+
+    public void setLikedfoodproductimage(String likedfoodproductimage) {
+        this.likedfoodproductimage = likedfoodproductimage;
     }
 
     public String getLikedfoodid() {

@@ -7,16 +7,15 @@
     android:orientation="vertical">
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Top Brands For You"
         android:layout_margin="5dp"
-        android:textSize="19dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/denk_one"
+        android:text="Top Brands For You"
         android:textColor="@color/black"
-        android:fontFamily="@font/assistant_semibold"/>
+        android:textSize="19dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"

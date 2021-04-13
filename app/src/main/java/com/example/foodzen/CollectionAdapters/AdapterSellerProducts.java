@@ -47,7 +47,8 @@ public class AdapterSellerProducts extends RecyclerView.Adapter<AdapterSellerPro
         String txtFoodOriPrice = modelAddProducts.getOriPrice();
         String txtFoodDiscPrice = modelAddProducts.getDiscountPrice();
         String txtFoodType = modelAddProducts.getItemType();
-
+        String productimage=modelAddProducts.getProductimage();
+        Picasso.get().load(productimage).into(holder.FoodImageNewOne);
         holder.FoodItemNameNewOne.setText(txtFoodName);
         holder.FoodItemDescriptionNewOne.setText(txtFoodDesc);
         holder.FoodItemOriginalPriceNewOne.setText(txtFoodOriPrice);

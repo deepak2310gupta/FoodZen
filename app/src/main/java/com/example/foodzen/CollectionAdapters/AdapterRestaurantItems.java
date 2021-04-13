@@ -39,6 +39,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -83,13 +84,14 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
             String txtFoodOriPrice = modelAddProducts.getOriPrice();
             String txtFoodDiscPrice = modelAddProducts.getDiscountPrice();
             String txtFoodType = modelAddProducts.getItemType();
+            String foodImgs=modelAddProducts.getProductimage();
 
             holder.FoodItemName.setBackground(null);
             holder.FoodItemDescription.setBackground(null);
             holder.FoodItemOriginalPrice.setBackground(null);
             holder.FoodItemDiscountedPrice.setBackground(null);
             holder.itemTypeImageIcon.setBackground(null);
-            Picasso.get().load(R.drawable.pizza).into(holder.FoodImage);
+            Picasso.get().load(foodImgs).into(holder.FoodImage);
             holder.addProductLayout.setBackgroundResource(R.drawable.addlayoutbackground);
             holder.FoodItemName.setText(txtFoodName);
             holder.FoodItemDescription.setText(txtFoodDesc);
@@ -124,6 +126,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         ImageButton incrementButton = view.findViewById(R.id.incrementButton);
         ImageButton FavouriteFoodButton = view.findViewById(R.id.FavouriteFoodButton);
         TextView tvQuantity = view.findViewById(R.id.tvQuantity);
+        CircularImageView bottomproductimage=view.findViewById(R.id.bottomproductimage);
         Button addItemToCartButton = view.findViewById(R.id.addItemToCartButton);
         ProgressBar addCartProgressIndicator = view.findViewById(R.id.addCartProgressIndicator);
         TextView cartBottomFoodName = view.findViewById(R.id.cartBottomFoodName);
@@ -135,6 +138,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         bottomSheetDialog.setContentView(view);
         bottomSheetDialog.show();
         bottomSheetDialog.setCanceledOnTouchOutside(true);
+        Picasso.get().load(modelAddProducts.getProductimage()).into(bottomproductimage);
         cartBottomFoodName.setText(modelAddProducts.getpName());
         cartBottomFoodDesc.setText(modelAddProducts.getpDesc());
         dialogOriginalPrice.setText(Integer.toString(0));
@@ -220,6 +224,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
                 hashMap.put("likedfoodname", modelAddProducts.getpName());
                 hashMap.put("likedfoodshopname", shopName);
                 hashMap.put("likedfooduserid", user.getUid());
+                hashMap.put("likedfoodproductimage",modelAddProducts.getProductimage());
                 hashMap.put("likedfoodoriprice", modelAddProducts.getOriPrice());
                 hashMap.put("likedfooddiscountprice", modelAddProducts.getDiscountPrice());
                 hashMap.put("likedfooditemtype", modelAddProducts.getItemType());

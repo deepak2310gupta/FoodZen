@@ -70,7 +70,7 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
                 query.addListenerForSingleValueEvent(valueEventListener);
                 adapterRestaurantItems.isShimmerItems = false;
             }
-        }, 2200);
+        }, 2300);
 
         Query query1 = FirebaseDatabase.getInstance().getReference("TotalPromotionCodes").orderByChild("promocodeUserId").equalTo(shopId);
         query1.addListenerForSingleValueEvent(valueEventListenerNew);
