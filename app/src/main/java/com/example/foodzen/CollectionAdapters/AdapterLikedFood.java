@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodzen.CollectionModels.ModelLikedFoods;
 import com.example.foodzen.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
     ArrayList<ModelLikedFoods> modelLikedFoodsArrayList;
 
     public boolean isLikedShimmer = true;
-    public int likedShimmerNum = 6;
+    public int likedShimmerNum = 0;
 
 
     public AdapterLikedFood(Context context, ArrayList<ModelLikedFoods> modelLikedFoodsArrayList) {
@@ -57,6 +58,7 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
             String five = modelLikedFoods.getLikedfooddiscountnote();
             holder.foodLikedName.setBackground(null);
             holder.foodLikedShopname.setBackground(null);
+            holder.imageLiked.setBackground(null);
             holder.likedoriPrice.setBackground(null);
             holder.likeddiscprice.setBackground(null);
             Picasso.get().load(txtimg).into(holder.imageLiked);
@@ -79,7 +81,7 @@ public class AdapterLikedFood extends RecyclerView.Adapter<AdapterLikedFood.Like
 
     public class LikeFoodHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageLiked;
+        CircularImageView imageLiked;
         ShimmerFrameLayout shimmerlikedlayout;
         TextView likeddiscprice, likedoriPrice, foodLikedShopname, foodLikedName, likedDiscountNote;
 
