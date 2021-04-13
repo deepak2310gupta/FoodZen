@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="170dp"
-    android:layout_height="235dp"
+    android:layout_width="160dp"
+    android:layout_height="195dp"
     android:layout_margin="10dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
@@ -20,10 +21,10 @@
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/imageLiked"
-                android:layout_width="130dp"
-                android:layout_height="105dp"
+                android:layout_width="110dp"
+                android:layout_height="95dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:background="@color/colorShimmer"
                 android:scaleType="centerCrop" />
 
@@ -33,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageLiked"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:background="@color/colorShimmer"
                 android:fontFamily="@font/assistant_semibold"
                 android:textAlignment="center"
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/foodLikedName"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:background="@color/colorShimmer"
                 android:fontFamily="@font/assistant_semibold"
                 android:textAlignment="center"
@@ -65,7 +66,7 @@
                     android:id="@+id/likedoriPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="1dp"
                     android:layout_weight="1"
                     android:background="@color/colorShimmer"
                     android:fontFamily="@font/assistant_semibold"
@@ -77,7 +78,7 @@
                     android:id="@+id/likeddiscprice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="1dp"
                     android:layout_weight="1"
                     android:background="@color/colorShimmer"
                     android:fontFamily="@font/assistant_semibold"
@@ -93,11 +94,11 @@
                 android:layout_below="@id/likedPriceLayout"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
                 android:background="@drawable/discountnotebackground"
                 android:fontFamily="@font/signika_semibold"
-                android:padding="5dp"
-                android:textAlignment="center"
+                android:padding="2dp"
                 android:textColor="@color/white" />
 
 

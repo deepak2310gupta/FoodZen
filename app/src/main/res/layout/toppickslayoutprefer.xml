@@ -100,7 +100,7 @@
                     android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ccd"/>
+                    android:src="@drawable/ccdn"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -227,7 +227,7 @@
                     android:layout_height="70dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/buckstar"/>
+                    android:src="@drawable/nstarbuckn"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

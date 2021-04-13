@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/overboardImageLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_blob">
+        android:layout_centerHorizontal="true">
 
-        <ImageView
-            android:id="@+id/imageoverboard"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_blob">
+
+            <ImageView
+                android:id="@+id/imageoverboard"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -30,7 +37,7 @@
         android:layout_margin="7dp"
         android:fontFamily="@font/signika_semibold"
         android:text="Heading"
-        android:textColor="@color/black"
+        android:textColor="#199f79"
         android:textSize="35dp" />
 
     <TextView
@@ -41,10 +48,10 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="6dp"
         android:fontFamily="@font/signika_semibold"
-        android:maxLines="3"
+        android:maxLines="2"
         android:text="Description Of The Heading,Description Of The Heading,Description Of The Heading"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="#A5A396"
         android:textSize="20dp" />
 
 

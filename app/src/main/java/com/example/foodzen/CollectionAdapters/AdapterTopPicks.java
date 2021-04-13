@@ -62,13 +62,13 @@ public class AdapterTopPicks extends RecyclerView.Adapter<AdapterTopPicks.PicksV
             } else if (four.equals("haldiramstwo")) {
                 holder.topimagepicks.setImageResource(R.drawable.haldirams);
             } else if (four.equals("ccdthree")) {
-                holder.topimagepicks.setImageResource(R.drawable.ccd);
+                holder.topimagepicks.setImageResource(R.drawable.ccdn);
             } else if (four.equals("dominosfour")) {
                 holder.topimagepicks.setImageResource(R.drawable.dominoz);
             } else if (four.equals("bikanervalafive")) {
                 holder.topimagepicks.setImageResource(R.drawable.bikanervala);
             } else if (four.equals("starbuckssix")) {
-                holder.topimagepicks.setImageResource(R.drawable.starbucks);
+                holder.topimagepicks.setImageResource(R.drawable.nstarbuckn);
             } else if (four.equals("kfcseven")) {
                 holder.topimagepicks.setImageResource(R.drawable.kfc);
             } else if (four.equals("burgerkingfive")) {

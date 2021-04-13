@@ -73,7 +73,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/signika_semibold"
                     android:text="Top Picks For You"
-                    android:textColor="@color/black"
+                    android:textColor="@color/myAppcolor"
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </LinearLayout>

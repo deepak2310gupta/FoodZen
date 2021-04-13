@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
                 formingDataforTopPicksToUers();
                 checkUserAlredyLoggedin();
             }
-        }, 3100);
+        }, 1600);
 
         Animation animZoomIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
         findViewById(R.id.cardSplash).startAnimation(animZoomIn);

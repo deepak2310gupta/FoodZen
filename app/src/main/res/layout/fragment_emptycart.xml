@@ -63,7 +63,7 @@
             android:padding="13dp"
             android:text="Browse Restaurants"
             android:textAlignment="center"
-            android:textColor="#199F79"
+            android:textColor="#FF7739"
             android:textSize="19dp"
             android:textStyle="bold" />
 

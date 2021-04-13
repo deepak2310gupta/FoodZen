@@ -47,7 +47,7 @@ public class OnBoardActivity extends AppCompatActivity {
         }
 
         if (mDots.length > 0) {
-            mDots[position].setTextColor(getResources().getColor(R.color.yellow));
+            mDots[position].setTextColor(getResources().getColor(R.color.myAppcolor));
         }
 
 
