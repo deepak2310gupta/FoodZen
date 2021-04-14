@@ -6,29 +6,29 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
-        app:cnb_backgroundColor="#ADFDE6"
-        app:cnb_iconColor="#178767"
+        app:cnb_backgroundColor="#BEFFEC"
+        app:cnb_iconColor="#199F79"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="#178767" />
+        app:cnb_textColor="#199F79" />
 
     <item
         android:id="@+id/favourites"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="Favourites"
-        app:cnb_backgroundColor="#ADFDE6"
-        app:cnb_iconColor="#178767"
+        app:cnb_backgroundColor="#BEFFEC"
+        app:cnb_iconColor="#199F79"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="#178767" />
+        app:cnb_textColor="#199F79" />
 
     <item
         android:id="@+id/userCart"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Cart"
-        app:cnb_backgroundColor="#ADFDE6"
-        app:cnb_iconColor="#178767"
+        app:cnb_backgroundColor="#BEFFEC"
+        app:cnb_iconColor="#199F79"
         app:cnb_iconTintMode="src_in"
-        app:cnb_textColor="#178767" />
+        app:cnb_textColor="#199F79" />
 
 </menu>

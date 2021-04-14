@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -26,6 +28,7 @@ import com.example.foodzen.CollectionActivities.SignInActivity;
 import com.example.foodzen.CollectionModels.ModelAddProducts;
 import com.example.foodzen.CollectionModels.ModelCartItems;
 import com.example.foodzen.CollectionModels.ModelFoodItem;
+import com.example.foodzen.FilterFoodItems;
 import com.example.foodzen.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,12 +51,13 @@ import java.util.HashMap;
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
 
-public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaurantItems.ShopItemsHolder> {
+public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaurantItems.ShopItemsHolder>implements Filterable {
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
     Context context;
-    ArrayList<ModelAddProducts> modelAddProductsArrayList;
+    public ArrayList<ModelAddProducts> modelAddProductsArrayList,filterList;
+    private FilterFoodItems filterFoodItems;
 
     public boolean isShimmerItems = true;
     public int isShimmerItemNum = 5;
@@ -61,6 +65,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
     public AdapterRestaurantItems(Context context, ArrayList<ModelAddProducts> modelAddProductsArrayList) {
         this.context = context;
         this.modelAddProductsArrayList = modelAddProductsArrayList;
+        this.filterList=modelAddProductsArrayList;
     }
 
     @NonNull
@@ -118,7 +123,6 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         }
 
     }
-
     private void showCartBottomDialog(ModelAddProducts modelAddProducts) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.bottomdialogproductdetails, null);
@@ -207,7 +211,6 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
             }
         });
     }
-
     private void AddtoUserFavouriteList(ModelAddProducts modelAddProducts) {
 
 
@@ -251,10 +254,7 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
         });
 
     }
-
-
     private int itemID = 1;
-
     private void AddToCartDatabase(String cartFoodName, String cartFoodQuantity, String cartFoodPrice, String cartUserId, String cartProductId, String foodOriginalTotalPrice, ProgressBar addCartProgressIndicator, BottomSheetDialog bottomSheetDialog) {
 
         itemID++;
@@ -305,6 +305,15 @@ public class AdapterRestaurantItems extends RecyclerView.Adapter<AdapterRestaura
 
         return isShimmerItems ? isShimmerItemNum : modelAddProductsArrayList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        if(filterFoodItems==null)
+            filterFoodItems=new FilterFoodItems(this,filterList);
+
+        return filterFoodItems;
+    }
+
 
     public class ShopItemsHolder extends RecyclerView.ViewHolder {
         ImageView FoodImage, itemTypeImageIcon;

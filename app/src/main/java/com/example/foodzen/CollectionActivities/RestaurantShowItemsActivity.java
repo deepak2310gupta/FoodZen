@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,6 +38,7 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
     private RecyclerView RestaurantShowItemsRecyclerView;
     private AdapterRestaurantItems adapterRestaurantItems;
     private AdapterPromoCodes adapterPromoCodes;
+    private EditText searchFoodName;
     private ArrayList<ModelAddProducts> modelFoodItemArrayList;
     private ArrayList<ModelPromoCodes> modelPromoCodesArrayList;
     private RecyclerView PromoCodesRecyclerViewCollections;
@@ -63,6 +67,28 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
         RestaurantShowItemsRecyclerView.setAdapter(adapterRestaurantItems);
         PromoCodesRecyclerViewCollections.setAdapter(adapterPromoCodes);
 
+        searchFoodName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try{
+                    adapterRestaurantItems.getFilter().filter(s);
+                }
+                catch (Exception e){
+
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -94,7 +120,7 @@ public class RestaurantShowItemsActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-
+        searchFoodName=findViewById(R.id.searchFoodName);
         ShopNameTv = findViewById(R.id.ShopNameTv);
         ShopCategoryTv = findViewById(R.id.ShopCategoryTv);
         ShopAddresstv = findViewById(R.id.ShopAddresstv);
